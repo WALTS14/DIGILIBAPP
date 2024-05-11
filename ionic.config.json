@@ -1,0 +1,7 @@
+{
+  "name": "DIGILIBAPP",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
