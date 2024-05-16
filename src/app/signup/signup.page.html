@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>signup</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="template">
+    
+    <div class="signup">
+      <h1>Sign up</h1>
+      <p>email</p>
+      <input [(ngModel)] = "email" type="text" >
+      <p>password</p>
+      <input [(ngModel)] = "password" type="password" >
+      <p>repeat password</p>
+    <input   [(ngModel)] = "repeatpass"type="password" >
+      <ion-button (click) = "signup()">Sign up</ion-button>
+    </div>
+  </div>
+  
+  
+</ion-content>

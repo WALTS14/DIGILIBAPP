@@ -1,0 +1,82 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <div class="dashboard">
+      <h3>DIGILIB</h3>
+      <div>
+        <ion-button fill="clear" class="searchbar">
+          <ion-input type="text" name="searchTerm" [(ngModel)]="searchTerm" (ionInput)="search(searchTerm)" placeholder="Search"></ion-input>
+          <ion-icon name="search" class="setting"></ion-icon>
+        </ion-button>  
+        
+        <ion-button fill="clear" (click)="toggleModal()" class="dashbtn">
+          <ion-icon name="cart" class="setting"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+      <ion-col class="Home">
+        <ion-row class="portals">
+          <img src="../../assets/images/LIBRARY.jpg">
+        </ion-row>
+        
+        <ion-card class="book-section">
+          <p>Recommended for you</p>
+          <div class="BOOKS">
+            <ion-card-content class="book-style" *ngFor="let book of BookList" >
+              <img src="../../assets/images/His Gangster Princess.jpg">
+              <p> {{  book.bookName }}</p>
+          </ion-card-content>
+          </div>
+        </ion-card>
+
+        <ion-card class="book-section">
+          <p>Recommended for you</p>
+          <div class="BOOKS">
+            <ion-card-content class="book-style" *ngFor="let book of BookList" >
+              <img src="../../assets/images/His Gangster Princess.jpg">
+              <p> {{  book.bookName }}</p>
+          </ion-card-content>
+          </div>
+        </ion-card>
+
+        
+      </ion-col>
+  </ion-grid>
+</ion-content>
+
+
+
+
+
+<!-- <div class="Home">
+  <div class="portals">
+    <img src="../../assets/images/LIBRARY.jpg">
+  </div>
+
+  <ion-card class="recommended">
+
+  </ion-card>
+  <div >
+    <p>Recommended for you</p>
+
+    <div class="BOOKS">
+      <div class="book1"  *ngFor="let book of BookList">
+        <img src="../../assets/images/His Gangster Princess.jpg">
+        <div class="details">
+          
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="newrel">
+
+  </div>
+
+</div> -->

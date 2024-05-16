@@ -1,0 +1,44 @@
+
+
+
+<ion-content class="settings-content">
+  <ion-list>
+    <ion-item (click)="goToAccountSettings()" class="settings-item">
+      <ion-label slot="end">Account Settings</ion-label>
+    </ion-item>
+    <ion-item (click)="goToHelpAndSupport()" class="settings-item">
+      <ion-label slot="end">Help and Support</ion-label>
+    </ion-item>
+    <ion-item (click)="goToAbout()" class="settings-item">
+      <ion-label slot="end">About</ion-label>
+    </ion-item>
+    <ion-item (click)="signOut()" class="settings-item">
+      <ion-label slot="end">Sign Out</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer class="footer">
+  <ion-toolbar>
+    <ion-buttons slot="start" class="footer-buttons">
+      <ion-button (click)="goToHome()">
+        <ion-icon name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="start" class="footer-buttons">
+      <ion-button (click)="goToBook()">
+        <ion-icon name="book"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end" class="footer-buttons">
+      <ion-button (click)="goToBookmark()">
+        <ion-icon name="bookmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end" class="footer-buttons">
+      <ion-button (click)="goToProfile()">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

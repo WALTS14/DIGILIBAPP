@@ -1,0 +1,55 @@
+ion-grid, ion-col, ion-row{
+    padding: 0px;
+}
+.dashboard{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    height: 70px;
+}
+ion-input{
+    width: 150px;
+}
+h3{
+    margin-left: 10px;
+}
+.searchbar input {
+    text-transform: none; /* Ensure text is displayed as typed */
+}
+
+.Home{
+    display: grid;
+    grid-template-rows: 180px 1fr 1fr;
+    height: 769px;
+    width: 414px;
+}
+
+.book-section{ 
+    background-color: lightblue;
+    height: 275px;
+    width: 414px;
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+}
+.book-section p{
+margin: 5px 0 5px 5px;                                                                                      
+}
+.BOOKS{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; 
+}
+.book-style{
+    background-color: lightcoral;
+    height: 235px;
+    width: 130px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 5px 0 5px; 
+    
+}
+// .details{
+
+// }

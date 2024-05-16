@@ -1,0 +1,37 @@
+
+<ion-content class="profile-content">
+  <ion-buttons>
+    <ion-button (click)="goToSettingsPage()">
+      <ion-icon name="settings"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+
+  <ion-icon name="person-circle-outline" class="avatar-icon"></ion-icon>
+  <ion-label class="username">John Doe</ion-label>
+  <div class="action-buttons">
+    <ion-item (click)="showReadingList()" lines="none" class="action-item" [color]="selectedTab === 'reading' ? 'primary' : 'light'">
+      <ion-label>ReadingList</ion-label>
+    </ion-item>
+    <ion-item (click)="showFavorites()" lines="none" class="action-item" [color]="selectedTab === 'favorites' ? 'primary' : 'light'">
+      <ion-label>Favorites</ion-label>
+    </ion-item>
+    <ion-item (click)="showDownloads()" lines="none" class="action-item" [color]="selectedTab === 'downloads' ? 'primary' : 'light'">
+      <ion-label>Downloads</ion-label>
+    </ion-item>
+  </div>
+ 
+  <div class="content-section">
+    <!-- Content for Reading List -->
+    <ion-list *ngIf="selectedTab === 'reading'">
+      <!-- Your reading list items here -->
+    </ion-list>
+    <!-- Content for Favorites -->
+    <ion-list *ngIf="selectedTab === 'favorites'">
+      <!-- Your favorite items here -->
+    </ion-list>
+    <!-- Content for Downloads -->
+    <ion-list *ngIf="selectedTab === 'downloads'">
+      <!-- Your downloaded items here -->
+    </ion-list>
+  </div>
+</ion-content>
