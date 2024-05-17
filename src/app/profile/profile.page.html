@@ -7,7 +7,7 @@
   </ion-buttons>
 
   <ion-icon name="person-circle-outline" class="avatar-icon"></ion-icon>
-  <ion-label class="username">John Doe</ion-label>
+  <ion-label class="username">Your name</ion-label>
   <div class="action-buttons">
     <ion-item (click)="showReadingList()" lines="none" class="action-item" [color]="selectedTab === 'reading' ? 'primary' : 'light'">
       <ion-label>ReadingList</ion-label>
@@ -23,15 +23,42 @@
   <div class="content-section">
     <!-- Content for Reading List -->
     <ion-list *ngIf="selectedTab === 'reading'">
-      <!-- Your reading list items here -->
+      <p>Hello</p>
     </ion-list>
     <!-- Content for Favorites -->
     <ion-list *ngIf="selectedTab === 'favorites'">
       <!-- Your favorite items here -->
+      <p>Hi</p>
     </ion-list>
     <!-- Content for Downloads -->
     <ion-list *ngIf="selectedTab === 'downloads'">
       <!-- Your downloaded items here -->
+      <p>Goodbye</p>
     </ion-list>
   </div>
 </ion-content>
+
+<ion-footer class="footer">
+  <ion-toolbar>
+    <ion-buttons slot="start" class="footer-buttons">
+      <ion-button (click)="goToHome()">
+        <ion-icon name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="start" class="footer-buttons">
+      <ion-button (click)="goToBook()">
+        <ion-icon name="book"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end" class="footer-buttons">
+      <ion-button (click)="goToBookmark()">
+        <ion-icon name="bookmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end" class="footer-buttons">
+      <ion-button (click)="goToProfile()">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

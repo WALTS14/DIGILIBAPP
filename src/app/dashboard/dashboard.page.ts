@@ -52,7 +52,9 @@ export class DashboardPage implements OnInit {
   }
 
 
-  constructor(private modalController: ModalController, private dashboard: DashboardService, private route: ActivatedRoute) {  }
+  constructor(private modalController: ModalController, private dashboard: DashboardService, private route: ActivatedRoute,
+    private router:Router
+  ) {  }
 
   
   async toggleModal() {
@@ -71,4 +73,29 @@ export class DashboardPage implements OnInit {
     
   }
   
+
+
+
+
+
+
+  goToHome() {
+    
+    this.router.navigate(['/dashboard']);
+  }
+
+  goToBook() {
+    
+    this.router.navigate(['/book']);
+  }
+
+  goToBookmark() {
+    
+    this.router.navigate(['/bookmark']);
+  }
+
+  goToProfile() {
+    
+    this.router.navigate(['/profile']);
+  }
 }

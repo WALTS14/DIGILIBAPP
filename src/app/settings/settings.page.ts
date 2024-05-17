@@ -2,6 +2,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-settings',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class SettingsPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private navCtrl:NavController) { }
 
   ngOnInit() {
   }
@@ -36,7 +37,7 @@ export class SettingsPage implements OnInit {
 
   goToHome() {
     
-    this.router.navigate(['/home']);
+    this.router.navigate(['/dashboard']);
   }
 
   goToBook() {
@@ -52,6 +53,10 @@ export class SettingsPage implements OnInit {
   goToProfile() {
     
     this.router.navigate(['/profile']);
+  }
+
+  goBack() {
+    this.navCtrl.navigateBack('/'); 
   }
 }
 

@@ -1,53 +1,53 @@
 .profile-content {
-    --ion-background-color: #f5f5f5; /* Background color */
-  }
-  
-  .avatar-icon {
-    font-size: 100px; /* Adjust the size of the avatar icon */
-    margin-top: 15%; /* 20% away from the top */
-    margin-bottom: 10px; /* Add some spacing */
-    display: block; /* Ensure it's a block element */
-    margin-left: auto; /* Center horizontally */
-    margin-right: auto; /* Center horizontally */
-  }
-  
-  .username {
-    text-align: center; /* Center align the username */
-    font-size: 24px; /* Adjust the font size */
-    display: block; /* Ensure it's a block element */
-    margin-left: auto; /* Center horizontally */
-    margin-right: auto; /* Center horizontally */
-    margin-bottom: 20px; /* Add margin below the username */
-  }
-  
-  .action-buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px; /* Add some spacing */
-  }
-  
-  .content-section {
-    padding: 20px; /* Add padding */
-  }
-  
-  
-  .footer {
-    --ion-background-color: #fff; /* Footer background color */
-  }
-  
-  .footer-buttons {
-    flex: 1; /* Equal width for each button */
-    justify-content: space-between; /* Spread buttons evenly */
-    padding: 0 10px; /* Add some padding */
-  }
+  --ion-background-color: #f5f5f5; /* Background color */
+}
 
-  ion-button {
-    --background: transparent; /* Transparent button background */
-    --color: brown; /* Button text color */
-  }
+.avatar-icon {
+  font-size: 100px; /* Adjust the size of the avatar icon */
+  margin-top: 15%; /* 20% away from the top */
+  margin-bottom: 10px; /* Add some spacing */
+  display: block; /* Ensure it's a block element */
+  margin-left: auto; /* Center horizontally */
+  margin-right: auto; /* Center horizontally */
+}
 
-  ion-icon {
-    --color: brown; /* Icon color */
-    font-size: 36px;
-  }
+.username {
+  text-align: center; /* Center align the username */
+  font-size: 24px; /* Adjust the font size */
+  display: block; /* Ensure it's a block element */
+  margin-left: auto; /* Center horizontally */
+  margin-right: auto; /* Center horizontally */
+  margin-bottom: 20px; /* Add margin below the username */
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Add some spacing */
+}
+
+.content-section {
+  padding: 20px; /* Add padding */
+}
+
+
+.footer {
+  --ion-background-color: #fff; /* Footer background color */
+}
+
+.footer-buttons {
+  flex: 1; /* Equal width for each button */
+  justify-content: space-between; /* Spread buttons evenly */
+  padding: 0 10px; /* Add some padding */
+}
+
+ion-button {
+  --background: transparent; /* Transparent button background */
+  --color: brown; /* Button text color */
+}
+
+ion-icon {
+  --color: brown; /* Icon color */
+  font-size: 36px;
+}
   

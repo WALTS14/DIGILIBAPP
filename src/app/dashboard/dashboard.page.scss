@@ -50,6 +50,31 @@ margin: 5px 0 5px 5px;
     margin: 10px 5px 0 5px; 
     
 }
+
+.footer {
+    --ion-background-color: #fff;
+  }
+  
+  .footer-buttons {
+    flex: 1; 
+    justify-content: space-between;
+    padding: 0 10px; 
+  }
+  
+  ion-toolbar {
+    --background: #fff; 
+    --border-color: transparent; 
+  }
+  
+  ion-button {
+    --background: transparent; 
+    --color: brown; 
+  }
+  
+  .footer ion-icon {
+    --color: brown; 
+    font-size: 36px;
+  }
 // .details{
 
 // }

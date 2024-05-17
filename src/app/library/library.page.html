@@ -5,9 +5,79 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">library</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeLg="=4" sizeMd="4" size="6" *ngFor="let book of books" (click)="openList(list)">
+        <ion-card class="card-style">
+          <ion-card-header>
+            <ion-card-title class="card-title"><img [src]="book.bookimage" alt="book image"></ion-card-title>
+          </ion-card-header>
+        
+          <ion-card-content class="card-content">
+            <p class="display">BookName: {{ book.bookname }}</p>
+            <p class="display">BookAuthor: {{ book.bookauthor}}</p>
+            <p class="display">BookGenre: {{ book.bookgenre}}</p>
+            <p class="display">BookMarked: {{ book.isFavorite}}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-modal trigger="open-modal" class="">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancel</ion-button>
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-input
+            labelPlacement="stacked"
+            label="Enter Image Path"
+            type="text"
+            [(ngModel)]="bookimage"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            labelPlacement="stacked"
+            label="Enter Book Name (Capital leters only)"
+            type="text"
+            [(ngModel)]="bookname"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            labelPlacement="stacked"
+            label="Enter book author (Capital leters only)"
+            type="text"
+            [(ngModel)]="bookimage"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            labelPlacement="stacked"
+            label="Enter book genre(Capital leters only)"
+            type="text"
+            [(ngModel)]="bookimage"
+          ></ion-input>
+        </ion-item>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="center">
+    <ion-fab-button id="open-modal">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
