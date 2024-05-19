@@ -1,0 +1,44 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 20px;
+    background-color: #f8f9fa;
+  }
+  
+  .signup {
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .signup h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .signup p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .signup ion-input {
+    margin-bottom: 20px;
+    --padding-start: 10px;
+    --padding-end: 10px;
+  }
+  
+  .signupbtn {
+    margin-top: 20px;
+    --background: #3880ff;
+    --background-activated: #3171e0;
+    --background-focused: #3171e0;
+  }
+  

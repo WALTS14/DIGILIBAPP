@@ -3,6 +3,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-settings',
@@ -11,7 +12,9 @@ import { NavController } from '@ionic/angular';
 })
 export class SettingsPage implements OnInit {
 
-  constructor(private router: Router, private navCtrl:NavController) { }
+  constructor(private router: Router, private navCtrl:NavController,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
   }
@@ -31,28 +34,10 @@ export class SettingsPage implements OnInit {
     this.router.navigate(['/about']);
   }
 
-  signOut() {
-    
-  }
-
-  goToHome() {
-    
-    this.router.navigate(['/dashboard']);
-  }
-
-  goToBook() {
-    
-    this.router.navigate(['/book']);
-  }
-
-  goToBookmark() {
-    
-    this.router.navigate(['/bookmark']);
-  }
-
-  goToProfile() {
-    
-    this.router.navigate(['/profile']);
+  async Logout(){
+    this.authService.LogOut().then(()=>{
+      this.router.navigate(['/login'])
+    })
   }
 
   goBack() {

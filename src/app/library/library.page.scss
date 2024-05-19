@@ -1,0 +1,84 @@
+ion-header {
+    --background: #f8f9fa;
+    --color: #343a40;
+    --padding-bottom: 10px;
+  }
+  
+  ion-toolbar {
+    --background: #343a40;
+    --color: #ffffff;
+  }
+  
+  ion-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  ion-content {
+    --background: #f8f9fa;
+  }
+  
+  .card-style {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+  }
+  .card-title{
+    background-color: #495057;
+  }
+  
+  .card-title img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .card-content {
+    font-size: 1rem;
+    color: #343a40;
+    padding: 10px;
+  }
+  
+  .display {
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #f8f9fa;
+  }
+  
+  .login {
+    text-align: center;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  .login h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #343a40;
+  }
+  
+  .login p {
+    font-size: 1rem;
+    color: #495057;
+  }
+  
+  .login .loginbtn {
+    margin-top: 20px;
+    --background: #007bff;
+    --color: #ffffff;
+  }
+  
+  ion-fab-button {
+    --background: #007bff;
+    --color: #ffffff;
+  }

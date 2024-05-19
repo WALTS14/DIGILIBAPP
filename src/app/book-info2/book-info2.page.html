@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">CANCEL</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="updateBook()">
+        SAVE
+      </ion-button>
+      
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div *ngIf="book" class="book-form-container">
+    <ion-item>
+      <ion-label position="stacked">Book Name</ion-label>
+      <ion-input [(ngModel)]="book.bookname"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Book Author</ion-label>
+      <ion-input [(ngModel)]="book.bookauthor"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Book Genre</ion-label>
+      <ion-input [(ngModel)]="book.bookgenre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Book Price</ion-label>
+      <ion-input type="number" [(ngModel)]="book.bookprice"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Favorite</ion-label>
+      <ion-toggle [(ngModel)]="book.isFavorite"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Add To Cart</ion-label>
+      <ion-toggle [(ngModel)]="book.isCart"></ion-toggle>
+    </ion-item>
+  </div>
+</ion-content>

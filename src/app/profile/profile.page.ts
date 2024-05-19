@@ -33,20 +33,4 @@ export class ProfilePage {
     this.router.navigate(['/dashboard']);
   }
 
-
-
-  goToBook() {
-    
-    this.router.navigate(['/book']);
-  }
-
-  goToBookmark() {
-    
-    this.router.navigate(['/bookmark']);
-  }
-
-  goToProfile() {
-    
-    this.router.navigate(['/profile']);
-  }
 }

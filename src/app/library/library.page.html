@@ -1,24 +1,21 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>library</ion-title>
+    <ion-title>Library</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
   <ion-grid>
     <ion-row>
-      <ion-col sizeLg="=4" sizeMd="4" size="6" *ngFor="let book of books" (click)="openList(list)">
+      <ion-col sizeLg="4" sizeMd="4" size="6" *ngFor="let book of books" (click)="openBook(book)">
         <ion-card class="card-style">
           <ion-card-header>
-            <ion-card-title class="card-title"><img [src]="book.bookimage" alt="book image"></ion-card-title>
+            <ion-card-title class="card-title">
+              <img [src]="book.bookimage" alt="book image" />
+            </ion-card-title>
           </ion-card-header>
-        
           <ion-card-content class="card-content">
-            <p class="display">BookName: {{ book.bookname }}</p>
-            <p class="display">BookAuthor: {{ book.bookauthor}}</p>
-            <p class="display">BookGenre: {{ book.bookgenre}}</p>
-            <p class="display">BookMarked: {{ book.isFavorite}}</p>
+            <p class="display">Name: {{ book.bookname }}</p>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -49,7 +46,7 @@
         <ion-item>
           <ion-input
             labelPlacement="stacked"
-            label="Enter Book Name (Capital leters only)"
+            label="Enter Book Name"
             type="text"
             [(ngModel)]="bookname"
           ></ion-input>
@@ -57,27 +54,35 @@
         <ion-item>
           <ion-input
             labelPlacement="stacked"
-            label="Enter book author (Capital leters only)"
+            label="Enter Book Author (Capital Letters Only)"
             type="text"
-            [(ngModel)]="bookimage"
+            [(ngModel)]="bookauthor"
           ></ion-input>
         </ion-item>
         <ion-item>
           <ion-input
             labelPlacement="stacked"
-            label="Enter book genre(Capital leters only)"
+            label="Enter Book Genre (Capital Letters Only)"
             type="text"
-            [(ngModel)]="bookimage"
+            [(ngModel)]="bookgenre"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            labelPlacement="stacked"
+            label="Enter Book Price (Numbers Only)"
+            type="number"
+            [(ngModel)]="bookprice"
           ></ion-input>
         </ion-item>
       </ion-content>
     </ng-template>
   </ion-modal>
 
-
-  <ion-fab slot="fixed" vertical="bottom" horizontal="center">
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button id="open-modal">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>
+

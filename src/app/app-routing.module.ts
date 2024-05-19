@@ -31,7 +31,7 @@ const routes: Routes = [
       {
         path: 'settings',
         loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
-      },
+      }
     ]
   },
   {
@@ -58,6 +58,15 @@ const routes: Routes = [
     path: 'settings',
     loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
   },
+  {
+    path: 'book-info',
+    loadChildren: () => import('./book-info/book-info.module').then( m => m.BookInfoPageModule)
+  },  {
+    path: 'book-info2',
+    loadChildren: () => import('./book-info2/book-info2.module').then( m => m.BookInfo2PageModule)
+  },
+
+
 ];
 
 @NgModule({

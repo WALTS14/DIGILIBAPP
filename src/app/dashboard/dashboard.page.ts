@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalComponent } from '../modal/modal.component';
-import { Books, iBooks } from './dashboard.model';
-import { DashboardService } from './dashboard.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Books, BookserviceService } from '../services/bookservice.service';
+import { BookInfo2Page } from '../book-info2/book-info2.page';
 
 
 @Component({
@@ -13,10 +13,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DashboardPage implements OnInit {
 
-  BookList: iBooks[] = [];
-  id: any;
   searchTerm: string ='';
   
+  userId:any
+bookimage:string;
+bookname:string;
+bookauthor:string;
+bookgenre:string;
+bookprice:number;
+isFavorite:boolean =false;
+isCart:boolean = false;
+
+  books:Books[]=[]
+
   filteredItems: Array<{
     bookName: string;
     bookAuthor:string;
@@ -29,14 +38,7 @@ export class DashboardPage implements OnInit {
     bookGenre:string;
   }>=[];
 
-  ngOnInit(): void {
-   
-    // this.firestore.collection('books').valueChanges().subscribe((books: any[]) => {
-    //   this.Books = books;
-    //   this.filterItems(this.searchTerm); // Filter items after fetching data
-    // });
-  }
-  
+ 
   
   
   search(searchTerm: string) {
@@ -52,10 +54,20 @@ export class DashboardPage implements OnInit {
   }
 
 
-  constructor(private modalController: ModalController, private dashboard: DashboardService, private route: ActivatedRoute,
-    private router:Router
+  constructor(private modalController: ModalController, private route: ActivatedRoute,
+    private router:Router, private bookService:BookserviceService
   ) {  }
 
+  ngOnInit() {
+    this.bookService.getProfile().then(user=>{
+      this.userId = user.uid
+      console.log(this.userId)
+      this.bookService.getBook(this.userId).subscribe(res =>{
+        this.books = res
+        console.log(this.books)
+      })
+    })
+  }
   
   async toggleModal() {
     const modal = await this.modalController.create({
@@ -64,13 +76,12 @@ export class DashboardPage implements OnInit {
     return await modal.present();
   }
   
-  ionViewWillEnter(){
-    this.book();
-  }
-
-  async book(){
-    this.BookList = await this.dashboard.getBooks();
-    
+  async openBook(book:Books){
+    const modal = await this.modalController.create({
+      component:BookInfo2Page,
+      componentProps:{id:book.id}
+    })
+    await modal.present()
   }
   
 
@@ -79,23 +90,6 @@ export class DashboardPage implements OnInit {
 
 
 
-  goToHome() {
-    
-    this.router.navigate(['/dashboard']);
-  }
-
-  goToBook() {
-    
-    this.router.navigate(['/book']);
-  }
-
-  goToBookmark() {
-    
-    this.router.navigate(['/bookmark']);
-  }
-
-  goToProfile() {
-    
-    this.router.navigate(['/profile']);
-  }
+  
+  
 }

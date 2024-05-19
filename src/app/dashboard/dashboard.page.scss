@@ -1,66 +1,50 @@
 ion-grid, ion-col, ion-row{
     padding: 0px;
 }
-.dashboard{
-    display: flex;
-    flex-direction: row;
-    justify-content:space-between;
-    align-items: center;
-    height: 70px;
+
+.background-image{
+  --background: url('../../assets/images/LIBRARY.jpg') no-repeat center center / cover;
+  position: relative;
 }
-ion-input{
-    width: 150px;
+
+.dashboard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
 }
-h3{
-    margin-left: 10px;
+
+.logo {
+  font-size: 1.5em;
+  flex-shrink: 0;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+}
+
+.searchbar {
+  display: flex;
+  align-items: center;
+}
+
+.searchbar ion-input {
+  margin-right: 8px;
+  flex: 1;
+}
+
+.setting {
+  font-size: 1.2em;
+}
+
+.dashbtn {
+  margin-left: 8px;
 }
 .searchbar input {
     text-transform: none; /* Ensure text is displayed as typed */
 }
-
-.Home{
-    display: grid;
-    grid-template-rows: 180px 1fr 1fr;
-    height: 769px;
-    width: 414px;
-}
-
-.book-section{ 
-    background-color: lightblue;
-    height: 275px;
-    width: 414px;
-    display: flex;
-    flex-direction: column;
-    margin: 0px;
-}
-.book-section p{
-margin: 5px 0 5px 5px;                                                                                      
-}
-.BOOKS{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around; 
-}
-.book-style{
-    background-color: lightcoral;
-    height: 235px;
-    width: 130px;
-    display: flex;
-    flex-direction: column;
-    margin: 10px 5px 0 5px; 
-    
-}
-
-.footer {
-    --ion-background-color: #fff;
-  }
-  
-  .footer-buttons {
-    flex: 1; 
-    justify-content: space-between;
-    padding: 0 10px; 
-  }
-  
+ 
   ion-toolbar {
     --background: #fff; 
     --border-color: transparent; 
@@ -68,12 +52,13 @@ margin: 5px 0 5px 5px;
   
   ion-button {
     --background: transparent; 
-    --color: brown; 
+    --color: brown;
+    font-size: 24px; 
   }
   
-  .footer ion-icon {
+  ion-icon {
     --color: brown; 
-    font-size: 36px;
+    font-size: 24px;
   }
 // .details{
 
