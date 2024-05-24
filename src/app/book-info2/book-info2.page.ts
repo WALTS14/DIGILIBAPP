@@ -53,7 +53,19 @@ export class BookInfo2Page implements OnInit {
     this.modalController.dismiss();
   }
 
+  async addToCart() {
+    this.bookService.addToCart(this.book);
+    const toast = await this.toastController.create({
+      message: 'Book Added to Cart!',
+      duration: 2000
+    });
+    toast.present();
+
+  }
+
   cancel(){
     this.modalController.dismiss()
   }
+
+  
 }

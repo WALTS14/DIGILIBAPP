@@ -65,6 +65,10 @@ const routes: Routes = [
     path: 'book-info2',
     loadChildren: () => import('./book-info2/book-info2.module').then( m => m.BookInfo2PageModule)
   },
+  {
+    path: 'cart',
+    loadChildren: () => import('./cart/cart.module').then( m => m.CartPageModule)
+  },
 
 
 ];

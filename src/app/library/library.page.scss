@@ -82,3 +82,11 @@ ion-header {
     --background: #007bff;
     --color: #ffffff;
   }
+
+  .book-image {
+    width: 100%; 
+    max-width: 200px; 
+    height: auto; 
+    display: block; 
+    margin: 0 auto; 
+  }

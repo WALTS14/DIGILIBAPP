@@ -1,42 +1,34 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="cancel()">CANCEL</ion-button>
+      <ion-button (click)="updateBook()">SAVE</ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button (click)="updateBook()">
-        SAVE
+      <ion-button (click)="addToCart()">
+        <ion-icon slot="icon-only" name="cart"></ion-icon>
       </ion-button>
-      
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div *ngIf="book" class="book-form-container">
+    <ion-img [src]="book.bookimage" class="book-image" *ngIf="book.bookimage"></ion-img>
     <ion-item>
-      <ion-label position="stacked">Book Name</ion-label>
-      <ion-input [(ngModel)]="book.bookname"></ion-input>
+      <ion-label position="stacked">BOOK NAME: {{book.bookname}}</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Book Author</ion-label>
-      <ion-input [(ngModel)]="book.bookauthor"></ion-input>
+      <ion-label position="stacked">Book Author: {{book.bookauthor}}</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Book Genre</ion-label>
-      <ion-input [(ngModel)]="book.bookgenre"></ion-input>
+      <ion-label position="stacked">Book Genre: {{book.bookgenre}}</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Book Price</ion-label>
-      <ion-input type="number" [(ngModel)]="book.bookprice"></ion-input>
+      <ion-label position="stacked">Book Price: {{book.bookprice}}</ion-label>
     </ion-item>
     <ion-item>
       <ion-label>Favorite</ion-label>
       <ion-toggle [(ngModel)]="book.isFavorite"></ion-toggle>
-    </ion-item>
-    <ion-item>
-      <ion-label>Add To Cart</ion-label>
-      <ion-toggle [(ngModel)]="book.isCart"></ion-toggle>
     </ion-item>
   </div>
 </ion-content>

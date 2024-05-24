@@ -4,7 +4,7 @@ import { ModalComponent } from '../modal/modal.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Books, BookserviceService } from '../services/bookservice.service';
 import { BookInfo2Page } from '../book-info2/book-info2.page';
-
+import { CartPage } from '../cart/cart.page';
 
 @Component({
   selector: 'app-dashboard',
@@ -59,14 +59,14 @@ isCart:boolean = false;
   ) {  }
 
   ngOnInit() {
-    this.bookService.getProfile().then(user=>{
-      this.userId = user.uid
-      console.log(this.userId)
-      this.bookService.getBook(this.userId).subscribe(res =>{
-        this.books = res
-        console.log(this.books)
-      })
-    })
+    this.bookService.getProfile().then(user => {
+      this.userId = user.uid;
+      console.log(this.userId);
+      this.bookService.getBook().subscribe(res => {
+        this.books = res;
+        console.log(this.books);
+      });
+    });
   }
   
   async toggleModal() {
@@ -83,13 +83,12 @@ isCart:boolean = false;
     })
     await modal.present()
   }
-  
 
-
-
-
-
-
-  
+  async openCart() {
+    const modal = await this.modalController.create({
+      component: CartPage
+    });
+    return await modal.present();
+  }
   
 }

@@ -13,6 +13,7 @@ export class Books{
   bookauthor:string;
   bookgenre:string;
   bookprice:number;
+  quantity:number;
   isFavorite:boolean;
   isCart:boolean;
 
@@ -21,6 +22,7 @@ export class Books{
     bookauthor:string,
     bookgenre:string,
     bookprice:number,
+    quantity:number,
     isFavorite:boolean,
     isCart:boolean,){
       this.userId = userId;
@@ -29,6 +31,7 @@ export class Books{
       this.bookauthor = bookauthor;
       this.bookgenre = bookgenre;
       this.bookprice = bookprice;
+      this.quantity = quantity;
       this.isFavorite = isFavorite;
       this.isCart = isCart;
   } 
@@ -40,7 +43,7 @@ export class Books{
 export class BookserviceService {
   
   userId:any
-
+  private cart: Books[] = [];
 
   constructor(public ngFireAuth : AngularFireAuth, private firestore: Firestore) { 
     this.getProfile().then(user =>{
@@ -67,10 +70,9 @@ export class BookserviceService {
     return addDoc(addRef,book)
   }
 
-  getBook(userId:any) : Observable<Books[]>{
-    const getRef = collection(this.firestore, `Library`)
-    const refQuery = query(getRef,where(`userId`,`==`,userId))
-    return collectionData(refQuery,{idField:`id`}) as Observable <Books[]>
+  getBook(): Observable<Books[]> {
+    const getRef = collection(this.firestore, `Library`);
+    return collectionData(getRef, { idField: `id` }) as Observable<Books[]>;
   }
 
   getBookById(id:any) : Observable<Books> {
@@ -89,4 +91,31 @@ export class BookserviceService {
     const deleteRef = doc(this.firestore,`Library/${id}`)
     return deleteDoc(deleteRef)
   }
-}  
+
+  addToCart(book: Books) {
+    const index = this.cart.findIndex(b => b.id === book.id);
+    if (index === -1) {
+      this.cart.push({ ...book, quantity: 1 });
+    } else {
+      this.cart[index].quantity += 1;
+    }
+  }
+
+  getCart() {
+    return this.cart;
+  }
+
+  updateCartItem(book: Books, quantity: number) {
+    const index = this.cart.findIndex(b => b.id === book.id);
+    if (index !== -1) {
+      this.cart[index].quantity = quantity;
+      if (quantity === 0) {
+        this.cart.splice(index, 1);
+      }
+    }
+  }
+
+  getTotalPrice() {
+    return this.cart.reduce((total, book) => total + book.bookprice * book.quantity, 0);
+  }
+} 

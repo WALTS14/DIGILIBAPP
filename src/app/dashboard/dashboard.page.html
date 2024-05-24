@@ -8,7 +8,7 @@
           <ion-icon name="search" class="setting"></ion-icon>
         </ion-button>  
         
-        <ion-button fill="clear" (click)="toggleModal()" class="dashbtn">
+        <ion-button fill="clear" (click)="openCart()" class="dashbtn">
           <ion-icon name="cart" class="setting"></ion-icon>
         </ion-button>
       </div>
@@ -23,7 +23,7 @@
         <ion-card class="card-style">
           <ion-card-header>
             <ion-card-title class="card-title">
-              <img [src]="book.bookimage" alt="book image" />
+              <img [src]="book.bookimage" class="book-image" alt="book image" />
             </ion-card-title>
           </ion-card-header>
           <ion-card-content class="card-content">
@@ -36,34 +36,3 @@
 </ion-content>
 
 
-
-
-
-<!-- <div class="Home">
-  <div class="portals">
-    <img src="../../assets/images/LIBRARY.jpg">
-  </div>
-
-  <ion-card class="recommended">
-
-  </ion-card>
-  <div >
-    <p>Recommended for you</p>
-
-    <div class="BOOKS">
-      <div class="book1"  *ngFor="let book of BookList">
-        <img src="../../assets/images/His Gangster Princess.jpg">
-        <div class="details">
-          
-          
-        </div>
-      </div>
-    </div>
-    
-  </div>
-
-  <div class="newrel">
-
-  </div>
-
-</div> -->

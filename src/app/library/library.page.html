@@ -11,7 +11,7 @@
         <ion-card class="card-style">
           <ion-card-header>
             <ion-card-title class="card-title">
-              <img [src]="book.bookimage" alt="book image" />
+              <img [src]="book.bookimage" class="book-image"  alt="book image" />
             </ion-card-title>
           </ion-card-header>
           <ion-card-content class="card-content">
@@ -36,12 +36,8 @@
       </ion-header>
       <ion-content class="ion-padding">
         <ion-item>
-          <ion-input
-            labelPlacement="stacked"
-            label="Enter Image Path"
-            type="text"
-            [(ngModel)]="bookimage"
-          ></ion-input>
+          <ion-label>Upload Image</ion-label>
+          <ion-input type="file" (change)="uploadFile($event)"></ion-input>
         </ion-item>
         <ion-item>
           <ion-input

@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Cart</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeCart()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let book of cart">
+      <ion-label>
+        <h2>{{ book.bookname }}</h2>
+        <p>{{ book.bookauthor }}</p>
+        <p>Price: {{ book.bookprice }}</p>
+      </ion-label>
+      <div class="quantity-controls">
+        <ion-button size="small" (click)="decreaseQuantity(book)">
+          <ion-icon slot="icon-only" name="remove"></ion-icon>
+        </ion-button>
+        <ion-input type="number" [(ngModel)]="book.quantity" readonly></ion-input>
+        <ion-button size="small" (click)="increaseQuantity(book)">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+      </div>
+      <ion-button slot="end" (click)="updateQuantity(book, 0)">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+  <ion-item>
+    <ion-label>
+      <h2>Total Price: {{ totalPrice }}</h2>
+    </ion-label>
+  </ion-item>
+  <ion-button expand="full" (click)="checkout()">Checkout</ion-button>
+</ion-content>
+
+

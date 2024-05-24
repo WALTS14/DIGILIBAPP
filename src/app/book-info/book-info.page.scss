@@ -1,46 +1,7 @@
-ion-header {
-    --background: #343a40;
-    --color: #ffffff;
-  }
-  
-  ion-toolbar {
-    --background: #343a40;
-  }
-  
-  
-  ion-icon {
-    --color: #ffffff;
-  }
-  
-  ion-content {
-    --background: #f8f9fa;
-    padding: 20px;
-  }
-  
-  .book-form-container {
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  ion-item {
-    --background: transparent;
-    margin-bottom: 10px;
-  }
-  
-  ion-label {
-    color: #495057;
-    font-weight: bold;
-  }
-  
-  ion-input {
-    --background: #e9ecef;
-    --padding-start: 10px;
-    --padding-end: 10px;
-    border-radius: 5px;
-  }
-  
-  ion-toggle {
-    margin-left: auto;
-  }
+.book-image {
+  width: 100%; /* Set the width to 100% of the container */
+  max-width: 200px; /* Set a maximum width */
+  height: auto; /* Maintain the aspect ratio */
+  display: block; /* Ensure it behaves like a block element */
+  margin: 0 auto; /* Center the image horizontally */
+}
