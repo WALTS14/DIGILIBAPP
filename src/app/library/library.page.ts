@@ -5,6 +5,7 @@ import { Books, BookserviceService } from '../services/bookservice.service';
 import { AlertController, ModalController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { BookInfoPage } from '../book-info/book-info.page';
+import { BookInfo2Page } from '../book-info2/book-info2.page';
 
 @Component({
   selector: 'app-library',
@@ -12,35 +13,41 @@ import { BookInfoPage } from '../book-info/book-info.page';
   styleUrls: ['./library.page.scss'],
 })
 export class LibraryPage implements OnInit {
-userId:any
-bookimage:string;
-bookname:string;
-bookauthor:string;
-bookgenre:string;
-bookprice:number;
-quantity:number;
-isFavorite:boolean =false;
-isCart:boolean = false;
+  userId: any;
+  bookimage: string;
+  bookname: string;
+  bookauthor: string;
+  bookgenre: string;
+  bookprice: number;
+  quantity: number = 0;
+  isFavorite: boolean = false;
+  isCart: boolean = false;
+  isAdmin: boolean = false;
 
-books:Books[]=[]
+  books: Books[] = [];
 
-  constructor(private bookService:BookserviceService,
-    private toastController:ToastController,
-    private alertController:AlertController,
-    private modalController:ModalController,
-    private router:Router,
-    private afStorage : AngularFireStorage
-  ) { }
+  constructor(
+    private bookService: BookserviceService,
+    private toastController: ToastController,
+    private alertController: AlertController,
+    private modalController: ModalController,
+    private router: Router,
+    private afStorage: AngularFireStorage
+  ) {}
 
   ngOnInit() {
     this.bookService.getProfile().then(user => {
       this.userId = user.uid;
-      console.log(this.userId);
+      this.isAdmin = this.checkIfAdmin(user.email);
       this.bookService.getBook().subscribe(res => {
         this.books = res;
-        console.log(this.books);
       });
     });
+  }
+
+  checkIfAdmin(email: string): boolean {
+    const adminEmails = ['ochoajp14@gmail.com', 'admin@123.com','walter@gmail.com'];
+    return adminEmails.includes(email);
   }
 
   cancel() {
@@ -49,7 +56,7 @@ books:Books[]=[]
 
   confirm() {
     this.modalController.dismiss(this.bookname, 'confirm');
-    this.addBook()
+    this.addBook();
   }
 
   clearFields() {
@@ -90,12 +97,24 @@ books:Books[]=[]
     });
   }
 
-  async openBook(book:Books){
+  async openBook(book: Books) {
     const modal = await this.modalController.create({
-      component:BookInfoPage,
+      component: BookInfoPage,
+      componentProps: { id: book.id }
+    });
+    await modal.present();
+  }
+
+  async openBook2(book:Books){
+    const modal = await this.modalController.create({
+      component:BookInfo2Page,
       componentProps:{id:book.id}
     })
     await modal.present()
+  }
+
+  goToOrdersPage() {
+    this.router.navigate(['/orders']);
   }
 
   uploadFile(event: any) {
@@ -113,3 +132,4 @@ books:Books[]=[]
     ).subscribe();
   }
 }
+

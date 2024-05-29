@@ -76,7 +76,7 @@ isCart:boolean = false;
     return await modal.present();
   }
   
-  async openBook(book:Books){
+  async openBook2(book:Books){
     const modal = await this.modalController.create({
       component:BookInfo2Page,
       componentProps:{id:book.id}

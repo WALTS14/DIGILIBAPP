@@ -7,11 +7,11 @@
 <ion-content [fullscreen]="true">
   <ion-grid>
     <ion-row>
-      <ion-col sizeLg="4" sizeMd="4" size="6" *ngFor="let book of books" (click)="openBook(book)">
+      <ion-col sizeLg="4" sizeMd="4" size="6" *ngFor="let book of books" (click)="isAdmin ? openBook(book) : openBook2(book)">
         <ion-card class="card-style">
           <ion-card-header>
             <ion-card-title class="card-title">
-              <img [src]="book.bookimage" class="book-image"  alt="book image" />
+              <img [src]="book.bookimage" class="book-image" alt="book image" />
             </ion-card-title>
           </ion-card-header>
           <ion-card-content class="card-content">
@@ -75,9 +75,12 @@
     </ng-template>
   </ion-modal>
 
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" *ngIf="isAdmin">
     <ion-fab-button id="open-modal">
       <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button (click)="goToOrdersPage()">
+      <ion-icon name="list"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>

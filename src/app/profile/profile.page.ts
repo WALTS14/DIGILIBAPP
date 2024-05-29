@@ -1,16 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { Books, BookserviceService } from '../services/bookservice.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
 })
-export class ProfilePage {
-  selectedTab: string = 'reading'; 
+export class ProfilePage implements OnInit {
+  selectedTab: string = 'favorites';
+  userId: any;
+  favorites: Books[] = [];
+  orders: any[] = [];
 
-  constructor(private navCtrl: NavController, private router:Router) {}
+  constructor(
+    private navCtrl: NavController,
+    private router: Router,
+    private bookService: BookserviceService
+  ) {}
+
+  ngOnInit() {
+    this.bookService.getProfile().then((user) => {
+      this.userId = user?.uid;
+      if (this.userId) {
+        
+        this.loadOrders();
+      }
+    });
+  }
+
+
+  loadOrders() {
+    this.bookService.getOrders(this.userId).subscribe((res) => {
+      this.orders = res.map(order => ({
+        ...order,
+        date: (order.date as any).toDate() // Convert Firestore timestamp to Date
+      }));
+    });
+  }
+
 
   goToSettingsPage() {
     this.router.navigate(['/settings']);
@@ -24,13 +53,8 @@ export class ProfilePage {
     this.selectedTab = 'favorites';
   }
 
-  showDownloads() {
-    this.selectedTab = 'downloads';
+  showOrders() {
+    this.selectedTab = 'orders';
   }
-
-  goToHome() {
-    
-    this.router.navigate(['/dashboard']);
-  }
-
 }
+
