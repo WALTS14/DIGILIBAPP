@@ -7,64 +7,105 @@ ion-grid, ion-col, ion-row{
   position: relative;
 }
 
-.dashboard {
+ion-grid, ion-col, ion-row{
+  padding: 0px;
+}
+ion-input{
+  width: 100px;
+}
+// ion-toolbar{
+//     background-color: rgb(255, 192, 75);
+// }
+header{
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+
   align-items: center;
-  padding: 0 16px;
-}
+  height: 70px;
+} 
 
-.logo {
-  font-size: 1.5em;
-  flex-shrink: 0;
+.logo{
+  width: 160px;
+  position:static;
 }
-
-.controls {
-  display: flex;
-  align-items: center;
-}
-
-.searchbar {
-  display: flex;
-  align-items: center;
-}
-
 .searchbar ion-input {
-  margin-right: 8px;
-  flex: 1;
+  text-transform: none; 
+  width: 35px
 }
 
-.setting {
-  font-size: 1.2em;
+// -----------------------------------------------------------------------body
+
+
+
+.Home{
+  display: grid;
+  grid-template-rows: 180px 1fr 1fr;
+  height: 769px;
+  width: 414px;
 }
 
-.dashbtn {
-  margin-left: 8px;
-}
-.searchbar input {
-    text-transform: none; /* Ensure text is displayed as typed */
-}
- 
-  ion-toolbar {
-    --background: #fff; 
-    --border-color: transparent; 
-  }
-  
-  ion-button {
-    --background: transparent; 
-    --color: brown;
-    font-size: 24px; 
-  }
-  
-  ion-icon {
-    --color: brown; 
-    font-size: 24px;
-  }
 
-  .book-image {
-    width: 100%; 
-    max-width: 200px; 
-    height: auto; 
-    display: block; 
-    margin: 0 auto; 
-  }
+
+.book-section{ 
+  background-color: lightblue;
+  height: 275px;
+  width: 414px;
+  display: flex;
+  flex-direction: column;
+  margin: 0px;
+}
+.book-tag{
+  margin: 5px 0 5px 5px;      
+  color: black;         
+  font-weight: 750;                                                                       
+}
+.book-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; 
+}
+.book-row img{
+  width: 120px;
+  height: 170px;
+  object-fit: fill;
+}
+.book-row p{
+  color: white;         
+}
+.book-style{
+  background-color: black;
+  height: 235px;
+  width: 130px;
+  display: flex;
+  flex-direction: column;
+  margin: 5px 5px 0 5px; 
+  padding: 7px;
+}
+
+.footer {
+  --ion-background-color: #fff;
+}
+
+.footer-buttons {
+  flex: 1; 
+  justify-content: space-between;
+  padding: 0 10px; 
+}
+
+ion-toolbar {
+  --background: #fff; 
+  --border-color: transparent; 
+}
+
+ion-button {
+  --background: transparent; 
+  --color: brown; 
+}
+
+.footer ion-icon {
+  --color: brown; 
+  font-size: 36px;
+}
+// .details{
+
+// }
