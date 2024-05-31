@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { User } from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Firestore, collection, addDoc, query, where, collectionData, updateDoc, deleteDoc, doc, docData } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
+import { switchMap } from 'rxjs/operators'
 
 
 export class Books{
@@ -44,6 +45,9 @@ export class BookserviceService {
   
   userId:any
   private cart: Books[] = [];
+  private favorites: Books[] = [];
+  private favoritesSubject = new BehaviorSubject<Books[]>([]);
+  favorites$ = this.favoritesSubject.asObservable();
 
   constructor(public ngFireAuth : AngularFireAuth, private firestore: Firestore) { 
     this.getProfile().then(user =>{
@@ -62,6 +66,12 @@ export class BookserviceService {
           }
       }, reject)
     })
+  }
+
+  signOut() {
+    return this.ngFireAuth.signOut().then(() => {
+      window.location.reload();
+    });
   }
 
   addBook(book:Books){
@@ -92,6 +102,37 @@ export class BookserviceService {
     return deleteDoc(deleteRef)
   }
 
+  addToFavorites(book: Books) {
+    const favorites = this.favoritesSubject.value;
+    const index = favorites.findIndex(fav => fav.id === book.id);
+    if (index === -1) {
+      favorites.push(book);
+      this.favoritesSubject.next(favorites);
+    }
+  }
+
+  removeFromFavorites(bookId: string) {
+    let favorites = this.favoritesSubject.value;
+    favorites = favorites.filter(fav => fav.id !== bookId);
+    this.favoritesSubject.next(favorites);
+  }
+
+  getFavorites(userId: string): Observable<Books[]> {
+    return this.favorites$.pipe(
+      switchMap(favorites => {
+        return of(favorites.filter(fav => fav.userId === userId));
+      })
+    );
+  }
+
+  // syncFavorites() {
+  //   const favoritesRef = collection(this.firestore, 'Favorites');
+  //   const queryRef = query(favoritesRef, where('userId', '==', this.userId));
+  //   collectionData(queryRef, { idField: 'id' }).subscribe(favorites => {
+  //     this.favoritesSubject.next(favorites);
+  //   });
+  // }
+
   addToCart(book: Books) {
     const index = this.cart.findIndex(b => b.id === book.id);
     if (index === -1) {
@@ -118,4 +159,33 @@ export class BookserviceService {
   getTotalPrice() {
     return this.cart.reduce((total, book) => total + book.bookprice * book.quantity, 0);
   }
+
+  async checkout() {
+    if (!this.userId) {
+      await this.getProfile();
+    }
+
+    const order = {
+      userId: this.userId,
+      items: this.cart,
+      totalPrice: this.getTotalPrice(),
+      date: new Date()
+    };
+
+    const orderRef = collection(this.firestore, 'Orders');
+    await addDoc(orderRef, order);
+    this.cart = [];
+  }
+
+  getOrders(userId: string): Observable<any[]> {
+    const ordersRef = collection(this.firestore, 'Orders');
+    const q = query(ordersRef, where('userId', '==', userId));
+    return collectionData(q, { idField: 'id' }) as Observable<any[]>;
+  }
+
+  getAllOrders(): Observable<any[]> {
+    const ordersRef = collection(this.firestore, 'Orders');
+    return collectionData(ordersRef, { idField: 'id' }) as Observable<any[]>;
+  }
+
 } 

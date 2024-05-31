@@ -1,55 +1,62 @@
+
 .container {
-    display: flex;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
     justify-content: center;
     align-items: center;
     height: 100%;
-    padding: 20px;
+    padding: 0px;
     background-color: #f8f9fa;
   }
   
   .login {
     width: 100%;
-    max-width: 400px;
-    background: white;
+    height: 67%;
+    background: #EDEDED;
     padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 50px 50px 0  0;
     text-align: center;
+    z-index: 999;
+    position: absolute;
+    top: 280px;
   }
-  
-  .login h1 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
-  }
-  
-  .login p {
-    margin: 10px 0;
-    font-size: 14px;
-    color: #666;
+
+  .login img {
+    width: 230px;
   }
   
   .login ion-input {
     margin-bottom: 20px;
-    background-color: #333;
+    color: rgb(102, 102, 102);
+    text-align: left;
+    padding: 5px;
+    border-bottom: solid rgb(97, 51, 24);
   }
   
-  .loginbtn {
-    margin-top: 20px;
-    --background: #3880ff;
-    --background-activated: #3171e0;
-    --background-focused: #3171e0;
+  .login  .loginbtn {
+    margin: 20px  0 0 85px;
+    width: 150px;
+    --border: 1px solid black; 
+    --border-radius: 50%;
+    --background: white ;
+    --background-activated: rgb(180, 180, 180);
+    --background-focused: white ;
+
+
   }
   
   .signup-link {
-    margin-top: 20px;
+    position: absolute;
+    bottom: 0px;
     font-size: 14px;
     color: #666;
+    margin: 0   0 20px 70px;
   }
   
   .signup-link a {
     color: #3880ff;
     text-decoration: none;
+    
   }
   
   .signup-link a:hover {

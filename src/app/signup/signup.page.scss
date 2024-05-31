@@ -1,20 +1,25 @@
 .container {
-    display: flex;
+    display: grid;
+    grid-template-rows: 165px 1fr;
     justify-content: center;
     align-items: center;
     height: 100%;
-    padding: 20px;
+    padding: 0px;
     background-color: #f8f9fa;
   }
   
   .signup {
     width: 100%;
-    max-width: 400px;
-    background: white;
+    height: 100%;
+    background: #EDEDED;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+  }
+
+  .login img {
+    width: 230px;
   }
   
   .signup h1 {
@@ -31,14 +36,19 @@
   
   .signup ion-input {
     margin-bottom: 20px;
-    --padding-start: 10px;
-    --padding-end: 10px;
+    color: rgb(102, 102, 102);
+    text-align: left;
+    padding: 5px;
+    border-bottom: solid rgb(97, 51, 24);
   }
   
   .signupbtn {
-    margin-top: 20px;
-    --background: #3880ff;
-    --background-activated: #3171e0;
-    --background-focused: #3171e0;
+      margin: 20px  0 0 85px;
+      width: 150px;
+      --border: 1px solid black; 
+      --border-radius: 50%;
+      --background: white ;
+      --background-activated: rgb(180, 180, 180);
+      --background-focused: white ;
   }
   

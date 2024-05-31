@@ -10,18 +10,28 @@ import { ModalController, ToastController } from '@ionic/angular';
 export class BookInfo2Page implements OnInit {
   @Input() id:string;
   
-  book : Books
-  constructor( private bookService: BookserviceService,
-      private toastController:ToastController,
-      private modalController:ModalController) { 
+  book : Books;
+  isFavorite: boolean;
+
+  constructor(private bookService: BookserviceService,
+              private toastController: ToastController,
+              private modalController: ModalController) { }
     
+  ngOnInit() {
+    console.log(this.id);
+    this.bookService.getBookById(this.id).subscribe(res =>{
+      this.book = res;
+      this.isFavorite = this.book.isFavorite;
+    });
   }
 
-  ngOnInit() {
-    console.log(this.id)
-    this.bookService.getBookById(this.id).subscribe(res =>{
-      this.book = res
-    })
+  async addToCart() {
+    this.bookService.addToCart(this.book);
+    const toast = await this.toastController.create({
+      message: 'Book Added to Cart!',
+      duration: 2000
+    });
+    toast.present();
   }
 
   async updateBook() {
@@ -32,40 +42,33 @@ export class BookInfo2Page implements OnInit {
       duration: 2000
     });
     toast.present();
-    
-    if (this.book.isCart) {
-      const favoriteToast = await this.toastController.create({
-        message: 'This book Has been Added To cart!',
-        duration: 4000
-      });
-      favoriteToast.present();
+
+    if (this.isFavorite !== this.book.isFavorite) {
+      if (this.book.isFavorite) {
+        const favoriteToast = await this.toastController.create({
+          message: 'This book has been added to favorites!',
+          duration: 2000
+        });
+        favoriteToast.present();
+      } else {
+        const unfavoriteToast = await this.toastController.create({
+          message: 'This book has been removed from favorites!',
+          duration: 2000
+        });
+        unfavoriteToast.present();
+      }
+      this.isFavorite = this.book.isFavorite;
     }
 
-    if (this.book.isFavorite) {
-      const favoriteToast = await this.toastController.create({
-        message: 'This book is marked as favorite!',
-        duration: 2000
-      });
-      favoriteToast.present();
-    }
-
-  
     this.modalController.dismiss();
   }
 
-  async addToCart() {
-    this.bookService.addToCart(this.book);
-    const toast = await this.toastController.create({
-      message: 'Book Added to Cart!',
-      duration: 2000
-    });
-    toast.present();
-
-  }
-
   cancel(){
-    this.modalController.dismiss()
+    this.modalController.dismiss();
   }
 
-  
+  toggleFavorite() {
+    this.book.isFavorite = !this.book.isFavorite;
+  }
 }
+

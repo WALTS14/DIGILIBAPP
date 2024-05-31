@@ -1,4 +1,3 @@
-// settings.page.ts
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -34,14 +33,19 @@ export class SettingsPage implements OnInit {
     this.router.navigate(['/about']);
   }
 
-  async Logout(){
-    this.authService.LogOut().then(()=>{
-      this.router.navigate(['/login'])
-    })
+  async Logout() {
+    try {
+      await this.authService.LogOut();
+      this.router.navigate(['/login']).then(() => {
+        window.location.reload();
+      });
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
   }
 
   goBack() {
-    this.navCtrl.navigateBack('/'); 
+    this.router.navigate(['/profile']);
   }
 }
 

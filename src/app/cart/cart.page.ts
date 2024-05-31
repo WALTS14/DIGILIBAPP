@@ -52,6 +52,7 @@ export class CartPage implements OnInit {
   }
 
   async checkout() {
+    await this.bookService.checkout();
     const toast = await this.toastController.create({
       message: 'Checkout successful!',
       duration: 2000
