@@ -85,7 +85,19 @@ const routes: Routes = [
   {
     path: 'librarydash',
     loadChildren: () => import('./librarydash/librarydash.module').then( m => m.LibrarydashPageModule)
+  },  {
+    path: 'about',
+    loadChildren: () => import('./about/about.module').then( m => m.AboutPageModule)
   },
+  {
+    path: 'help-and-support',
+    loadChildren: () => import('./help-and-support/help-and-support.module').then( m => m.HelpAndSupportPageModule)
+  },
+  {
+    path: 'account-settings',
+    loadChildren: () => import('./account-settings/account-settings.module').then( m => m.AccountSettingsPageModule)
+  },
+
 
 
 
