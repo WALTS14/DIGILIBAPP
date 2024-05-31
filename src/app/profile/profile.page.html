@@ -1,59 +1,74 @@
 <ion-content class="profile-content">
-  <ion-buttons>
-    <ion-button (click)="goToSettingsPage()">
-      <ion-icon name="settings"></ion-icon>
-    </ion-button>
-  </ion-buttons>
-
-  <ion-icon name="person-circle-outline" class="avatar-icon"></ion-icon>
-  <ion-label class="username">Your name</ion-label>
+  <ion-header class="header">
+    <ion-buttons slot="end">
+      <ion-button (click)="goToSettingsPage()">
+        <ion-icon name="settings"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-header>
+  
+  <div class="profile-header">
+    <ion-icon name="person-circle-outline" class="avatar-icon"></ion-icon>
+    <ion-label class="username">Your name</ion-label>
+  </div>
+  
   <div class="action-buttons">
-    <ion-item (click)="showReadingList()" lines="none" class="action-item" [color]="selectedTab === 'reading' ? 'primary' : 'light'">
-      <ion-label>Reading List</ion-label>
-    </ion-item>
-    <ion-item (click)="showFavorites()" lines="none" class="action-item" [color]="selectedTab === 'favorites' ? 'primary' : 'light'">
-      <ion-label>Favorites</ion-label>
-    </ion-item>
-    <ion-item (click)="showOrders()" lines="none" class="action-item" [color]="selectedTab === 'orders' ? 'primary' : 'light'">
-      <ion-label>Orders</ion-label>
-    </ion-item>
+    <ion-button expand="full" fill="clear" (click)="showReadingList()" [color]="selectedTab === 'reading' ? 'primary' : 'light'" class="action-item">
+      Reading List
+    </ion-button>
+    <ion-button expand="full" fill="clear" (click)="showFavorites()" [color]="selectedTab === 'favorites' ? 'primary' : 'light'" class="action-item">
+      Favorites
+    </ion-button>
+    <ion-button expand="full" fill="clear" (click)="showOrders()" [color]="selectedTab === 'orders' ? 'primary' : 'light'" class="action-item">
+      Orders
+    </ion-button>
   </div>
 
   <div class="content-section">
-    <ion-list *ngIf="selectedTab === 'reading'">
-      <p>Hello</p>
-    </ion-list>
-    <ion-list *ngIf="selectedTab === 'favorites'">
-      <ion-item *ngFor="let book of favorites">
-        <ion-thumbnail slot="start">
-          <img [src]="book.bookimage" alt="book image">
-        </ion-thumbnail>
-        <ion-label>
-          <h2>{{ book.bookname }}</h2>
-          <p>{{ book.bookauthor }}</p>
-          <p>{{ book.bookgenre }}</p>
-        </ion-label>
-        <ion-button slot="end" (click)="removeFromFavorites(book.id!)">
-          <ion-icon name="trash"></ion-icon>
-        </ion-button>
-      </ion-item>
-    </ion-list>
-    <ion-list *ngIf="selectedTab === 'orders'">
-      <ion-item *ngFor="let order of orders">
-        <ion-label>
-          <h2>Order Date: {{ order.date | date }}</h2>
-          <div *ngFor="let item of order.items">
-            <p>Book Name: {{ item.bookname }}</p>
-            <p>Author: {{ item.bookauthor }}</p>
-            <p>Price: {{ item.bookprice }}</p>
-            <p>Quantity: {{ item.quantity }}</p>
-          </div>
-          <h3>Total Price: {{ order.totalPrice }}</h3>
-        </ion-label>
-      </ion-item>
-    </ion-list>
+    <ion-card *ngIf="selectedTab === 'reading'" class="tab-content">
+      <ion-card-content>
+        <p>Hello</p>
+      </ion-card-content>
+    </ion-card>
+    
+    <ion-card *ngIf="selectedTab === 'favorites'" class="tab-content">
+      <ion-card-content>
+        <ion-item *ngFor="let book of favorites">
+          <ion-thumbnail slot="start">
+            <img [src]="book.bookimage" alt="book image">
+          </ion-thumbnail>
+          <ion-label>
+            <h2>{{ book.bookname }}</h2>
+            <p>{{ book.bookauthor }}</p>
+            <p>{{ book.bookgenre }}</p>
+          </ion-label>
+          <ion-button slot="end" color="danger" (click)="removeFromFavorites(book.id!)">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+    
+    <ion-card *ngIf="selectedTab === 'orders'" class="tab-content">
+      <ion-card-content>
+        <ion-item *ngFor="let order of orders">
+          <ion-label>
+            <h2>Order Date: {{ order.date | date }}</h2>
+            <div *ngFor="let item of order.items">
+              <p>Book Name: {{ item.bookname }}</p>
+              <p>Author: {{ item.bookauthor }}</p>
+              <p>Price: {{ item.bookprice }}</p>
+              <p>Quantity: {{ item.quantity }}</p>
+            </div>
+            <h3>Total Price: {{ order.totalPrice }}</h3>
+          </ion-label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>
+
+
 
 
 

@@ -12,53 +12,25 @@ import { CartPage } from '../cart/cart.page';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
-
-  searchTerm: string ='';
-  
-  userId:any
-bookimage:string;
-bookname:string;
-bookauthor:string;
-bookgenre:string;
-bookprice:number;
-isCart:boolean = false;
-
-  books:Books[]=[]
+  searchTerm: string = '';
+  userId: any;
+  bookimage: string;
+  bookname: string;
+  bookauthor: string;
+  bookgenre: string;
+  bookprice: number;
+  isCart: boolean = false;
+  books: Books[] = [];
   recommendedBooks: Books[] = [];
   historyBooks: Books[] = [];
-  
+  favorites: Books[] = [];
 
-  filteredItems: Array<{
-    bookName: string;
-    bookAuthor:string;
-    bookGenre:string;
-  }> = [];
-
-  Book: Array<{
-    bookName: string;
-    bookAuthor:string;
-    bookGenre:string;
-  }>=[];
-
- 
-  
-  
-  // search(searchTerm: string) {
-  //   this.searchTerm = searchTerm.toLowerCase();
-  // }
-
-  
-
-  // filterItems(searchTerm: string) {
-  //   this.filteredItems = this.Book.filter((item) =>
-  //     item.bookName.toLowerCase().includes(searchTerm.toLowerCase())
-  //   );
-  // }
-
-
-  constructor(private modalController: ModalController, private route: ActivatedRoute,
-    private router:Router, private bookService:BookserviceService
-  ) {  }
+  constructor(
+    private modalController: ModalController, 
+    private route: ActivatedRoute,
+    private router: Router, 
+    private bookService: BookserviceService
+  ) { }
 
   ngOnInit() {
     this.loadBooks();
@@ -77,12 +49,12 @@ isCart:boolean = false;
     return await modal.present();
   }
   
-  async openBook2(book:Books){
+  async openBook2(book: Books) {
     const modal = await this.modalController.create({
-      component:BookInfo2Page,
-      componentProps:{id:book.id}
-    })
-    await modal.present()
+      component: BookInfo2Page,
+      componentProps: { id: book.id }
+    });
+    await modal.present();
   }
 
   async openCart() {
@@ -103,13 +75,13 @@ isCart:boolean = false;
   loadFavoriteBooks() {
     if (this.userId) {
       this.bookService.getFavorites(this.userId).subscribe(favorites => {
-        this.books = favorites;
+        this.favorites = favorites;
       });
     }
   }
 
   isFavorite(book: Books): boolean {
-    return this.books.some(favorite => favorite.id === book.id);
+    return this.favorites.some(favorite => favorite.id === book.id);
   }
 
   async toggleFavorite(book: Books) {
@@ -129,5 +101,5 @@ isCart:boolean = false;
     const historyBooks = this.books.filter(book => book.bookgenre.toLowerCase() === 'history').slice(0, 3);
     this.historyBooks = historyBooks;
   }
-  
 }
+

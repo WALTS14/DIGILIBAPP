@@ -166,7 +166,7 @@ export class BookserviceService {
     const favoritesRef = collection(this.firestore, 'Favorites');
     const querySnapshot = await getDocs(query(favoritesRef, where('userId', '==', this.userId), where('id', '==', book.id)));
     if (querySnapshot.empty) {
-      await addDoc(favoritesRef, { ...book, userId: this.userId, isFavorite: true });
+      await addDoc(favoritesRef, { ...book, userId: this.userId });
       this.loadFavorites(this.userId);
       this.showToast('Added to favorites!');
     } else {
@@ -175,10 +175,16 @@ export class BookserviceService {
   }
 
   async removeFromFavorites(bookId: string) {
-    const bookRef = doc(this.firestore, `Favorites/${bookId}`);
-    await deleteDoc(bookRef);
-    this.loadFavorites(this.userId); 
-    this.showToast('Removed from favorites!');
+    const favoritesRef = collection(this.firestore, 'Favorites');
+    const q = query(favoritesRef, where('userId', '==', this.userId), where('id', '==', bookId));
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      querySnapshot.forEach(async docSnapshot => {
+        await deleteDoc(docSnapshot.ref);
+      });
+      this.loadFavorites(this.userId);
+      this.showToast('Removed from favorites!');
+    }
   }
 
   getFavorites(userId: string): Observable<Books[]> {
