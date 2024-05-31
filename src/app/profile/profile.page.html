@@ -20,11 +20,14 @@
   </div>
 
   <div class="content-section">
+
     <ion-list *ngIf="selectedTab === 'reading'">
-      <p>Hello</p>
-    </ion-list>
-    <ion-list *ngIf="selectedTab === 'favorites'">
-      <ion-item *ngFor="let book of favorites">
+    
+    </ion-list>   
+
+    
+    <ion-list *ngIf="selectedTab === 'favorites'" >
+      <ion-item class="Favorite"  *ngFor="let book of favorites">
         <ion-thumbnail slot="start">
           <ion-img [src]="book.bookimage"></ion-img>
         </ion-thumbnail>
@@ -35,6 +38,8 @@
         </ion-label>
       </ion-item>
     </ion-list>
+
+
     <ion-list *ngIf="selectedTab === 'orders'">
       <ion-item *ngFor="let order of orders">
         <ion-label>
@@ -49,7 +54,10 @@
         </ion-label>
       </ion-item>
     </ion-list>
+
+
   </div>
+
 </ion-content>
 
 

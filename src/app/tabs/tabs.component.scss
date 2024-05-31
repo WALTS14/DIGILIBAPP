@@ -1,9 +1,14 @@
+ion-tab-bar {
+  color: white;
+}
+
 ion-icon {
-    --color: brown; 
-    font-size: 36px;
+    color: white; 
+    border: 5 solid #59381A;
+    font-size: 30px;
   }
 
-ion-tab-button{
-    --color: brown; 
+ion-tab-button {
+    --color: white;
     font-size: 36px;
 }

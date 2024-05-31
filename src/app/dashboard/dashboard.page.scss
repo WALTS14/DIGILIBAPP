@@ -1,78 +1,97 @@
-ion-grid, ion-col, ion-row{
-    padding: 0px;
-}
 
 .background-image{
-  --background: url('../../assets/images/LIBRARY.jpg') no-repeat center center / cover;
-  position: relative;
+  --ion-background-color: white;
 }
 
 ion-grid, ion-col, ion-row{
   padding: 0px;
 }
 ion-input{
-  width: 100px;
+  width: 150px;
 }
-// ion-toolbar{
-//     background-color: rgb(255, 192, 75);
-// }
-header{
-  display: flex;
-  flex-direction: row;
 
+.toolbar-container{
+  background-color: #83552b;
+
+}
+header {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 200px 350px 25px;
+  background-color: #59381A; 
   align-items: center;
-  height: 70px;
+ 
+
 } 
 
-.logo{
+.logo {
   width: 160px;
   position:static;
 }
+
+
 .searchbar ion-input {
   text-transform: none; 
-  width: 35px
+  width: 55px;
+  color: white;
+
 }
+
+header div ion-icon {
+  color: white;
+  font-size: 30px;
+}
+
 
 // -----------------------------------------------------------------------body
 
 
-
 .Home{
   display: grid;
-  grid-template-rows: 180px 1fr 1fr;
-  height: 769px;
+  grid-template-rows:  180px 1fr 1fr;
+  height: 700px;
   width: 414px;
+  gap: 15px;
 }
 
 
 
-.book-section{ 
-  background-color: lightblue;
+.book-section { 
+  background-color: whitesmoke;
   height: 275px;
-  width: 414px;
+  width: 390px;
   display: flex;
   flex-direction: column;
   margin: 0px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.514);
+  position: relative;
+  top: -55px;
 }
-.book-tag{
+
+
+.book-tag {
   margin: 5px 0 5px 5px;      
   color: black;         
   font-weight: 750;                                                                       
 }
-.book-row{
+
+.book-row {
   display: flex;
   flex-direction: row;
   justify-content: space-around; 
 }
-.book-row img{
+
+.book-row img {
   width: 120px;
   height: 170px;
   object-fit: fill;
 }
-.book-row p{
+.book-row p {
   color: white;         
 }
-.book-style{
+.book-style { 
   background-color: black;
   height: 235px;
   width: 130px;
@@ -82,31 +101,4 @@ header{
   padding: 7px;
 }
 
-.footer {
-  --ion-background-color: #fff;
-}
 
-.footer-buttons {
-  flex: 1; 
-  justify-content: space-between;
-  padding: 0 10px; 
-  object-fit: cover;
-}
-
-ion-toolbar {
-  --background: #fff; 
-  --border-color: transparent; 
-}
-
-ion-button {
-  --background: transparent; 
-  --color: brown; 
-}
-
-.footer ion-icon {
-  --color: brown; 
-  font-size: 36px;
-}
-// .details{
-
-// }
