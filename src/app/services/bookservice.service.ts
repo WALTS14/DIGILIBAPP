@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Firestore, collection, addDoc, query, where, collectionData, updateDoc, deleteDoc, doc, docData } from '@angular/fire/firestore';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators'
+import { ToastController } from '@ionic/angular';
 
 
 export class Books{
@@ -15,7 +16,7 @@ export class Books{
   bookgenre:string;
   bookprice:number;
   quantity:number;
-  isFavorite:boolean;
+  sypnosis:string;
   isCart:boolean;
 
   constructor(userId:string,bookimage:string,
@@ -24,7 +25,7 @@ export class Books{
     bookgenre:string,
     bookprice:number,
     quantity:number,
-    isFavorite:boolean,
+    sypnosis:string,
     isCart:boolean,){
       this.userId = userId;
       this.bookimage = bookimage
@@ -33,7 +34,7 @@ export class Books{
       this.bookgenre = bookgenre;
       this.bookprice = bookprice;
       this.quantity = quantity;
-      this.isFavorite = isFavorite;
+      this.sypnosis = sypnosis;
       this.isCart = isCart;
   } 
 }
@@ -49,7 +50,9 @@ export class BookserviceService {
   private favoritesSubject = new BehaviorSubject<Books[]>([]);
   favorites$ = this.favoritesSubject.asObservable();
 
-  constructor(public ngFireAuth : AngularFireAuth, private firestore: Firestore) { 
+  constructor(public ngFireAuth : AngularFireAuth, private firestore: Firestore,
+    private toastController:ToastController
+  ) { 
     this.getProfile().then(user =>{
       this.userId = user.uid
       console.log(this.userId)
@@ -93,7 +96,7 @@ export class BookserviceService {
   updateBook(book:Books){
     const updateRef = doc(this.firestore,`Library/${book.id}`)
     return updateDoc(updateRef, {bookname:book.bookname, bookauthor:book.bookauthor, 
-      bookgenre:book.bookgenre,bookprice:book.bookprice, bookimage:book.bookimage,isFavorite:book.isFavorite,
+      bookgenre:book.bookgenre,bookprice:book.bookprice, bookimage:book.bookimage, sypnosis:book.sypnosis,
     isCart:book.isCart })
   }
 
@@ -102,36 +105,7 @@ export class BookserviceService {
     return deleteDoc(deleteRef)
   }
 
-  addToFavorites(book: Books) {
-    const favorites = this.favoritesSubject.value;
-    const index = favorites.findIndex(fav => fav.id === book.id);
-    if (index === -1) {
-      favorites.push(book);
-      this.favoritesSubject.next(favorites);
-    }
-  }
-
-  removeFromFavorites(bookId: string) {
-    let favorites = this.favoritesSubject.value;
-    favorites = favorites.filter(fav => fav.id !== bookId);
-    this.favoritesSubject.next(favorites);
-  }
-
-  getFavorites(userId: string): Observable<Books[]> {
-    return this.favorites$.pipe(
-      switchMap(favorites => {
-        return of(favorites.filter(fav => fav.userId === userId));
-      })
-    );
-  }
-
-  // syncFavorites() {
-  //   const favoritesRef = collection(this.firestore, 'Favorites');
-  //   const queryRef = query(favoritesRef, where('userId', '==', this.userId));
-  //   collectionData(queryRef, { idField: 'id' }).subscribe(favorites => {
-  //     this.favoritesSubject.next(favorites);
-  //   });
-  // }
+  
 
   addToCart(book: Books) {
     const index = this.cart.findIndex(b => b.id === book.id);
@@ -186,6 +160,40 @@ export class BookserviceService {
   getAllOrders(): Observable<any[]> {
     const ordersRef = collection(this.firestore, 'Orders');
     return collectionData(ordersRef, { idField: 'id' }) as Observable<any[]>;
+  }
+
+  async addToFavorites(book: Books) {
+    const favoritesRef = collection(this.firestore, `Favorites`);
+    await addDoc(favoritesRef, { ...book, userId: this.userId });
+    this.showToast('Added to favorites!');
+  }
+
+  async removeFromFavorites(bookId: string) {
+    const bookRef = doc(this.firestore, `Favorites/${bookId}`);
+    await deleteDoc(bookRef);
+    this.showToast('Removed from favorites!');
+  }
+
+  getFavorites(userId: string): Observable<Books[]> {
+    const favoritesRef = collection(this.firestore, 'Favorites');
+    const q = query(favoritesRef, where('userId', '==', userId));
+    return collectionData(q, { idField: 'id' }) as Observable<Books[]>;
+  }
+
+  private loadFavorites(userId: string) {
+    this.getFavorites(userId).subscribe(favorites => {
+      this.favorites = favorites;
+      this.favoritesSubject.next(favorites);
+    });
+  }
+
+  private async showToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      position: 'top'
+    });
+    toast.present();
   }
 
 } 

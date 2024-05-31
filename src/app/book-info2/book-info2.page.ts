@@ -21,7 +21,7 @@ export class BookInfo2Page implements OnInit {
     console.log(this.id);
     this.bookService.getBookById(this.id).subscribe(res =>{
       this.book = res;
-      this.isFavorite = this.book.isFavorite;
+      
     });
   }
 
@@ -43,23 +43,6 @@ export class BookInfo2Page implements OnInit {
     });
     toast.present();
 
-    if (this.isFavorite !== this.book.isFavorite) {
-      if (this.book.isFavorite) {
-        const favoriteToast = await this.toastController.create({
-          message: 'This book has been added to favorites!',
-          duration: 2000
-        });
-        favoriteToast.present();
-      } else {
-        const unfavoriteToast = await this.toastController.create({
-          message: 'This book has been removed from favorites!',
-          duration: 2000
-        });
-        unfavoriteToast.present();
-      }
-      this.isFavorite = this.book.isFavorite;
-    }
-
     this.modalController.dismiss();
   }
 
@@ -67,8 +50,6 @@ export class BookInfo2Page implements OnInit {
     this.modalController.dismiss();
   }
 
-  toggleFavorite() {
-    this.book.isFavorite = !this.book.isFavorite;
-  }
+
 }
 

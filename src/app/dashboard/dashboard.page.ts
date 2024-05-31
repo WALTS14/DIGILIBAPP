@@ -21,10 +21,10 @@ bookname:string;
 bookauthor:string;
 bookgenre:string;
 bookprice:number;
-isFavorite:boolean =false;
 isCart:boolean = false;
 
   books:Books[]=[]
+  favoriteBooks: Books[] = [];
 
   filteredItems: Array<{
     bookName: string;
@@ -41,17 +41,17 @@ isCart:boolean = false;
  
   
   
-  search(searchTerm: string) {
-    this.searchTerm = searchTerm.toLowerCase();
-  }
+  // search(searchTerm: string) {
+  //   this.searchTerm = searchTerm.toLowerCase();
+  // }
 
   
 
-  filterItems(searchTerm: string) {
-    this.filteredItems = this.Book.filter((item) =>
-      item.bookName.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }
+  // filterItems(searchTerm: string) {
+  //   this.filteredItems = this.Book.filter((item) =>
+  //     item.bookName.toLowerCase().includes(searchTerm.toLowerCase())
+  //   );
+  // }
 
 
   constructor(private modalController: ModalController, private route: ActivatedRoute,
@@ -59,14 +59,8 @@ isCart:boolean = false;
   ) {  }
 
   ngOnInit() {
-    this.bookService.getProfile().then(user => {
-      this.userId = user.uid;
-      console.log(this.userId);
-      this.bookService.getBook().subscribe(res => {
-        this.books = res;
-        console.log(this.books);
-      });
-    });
+    this.loadBooks();
+    this.loadFavoriteBooks();
   }
   
   async toggleModal() {
@@ -90,5 +84,37 @@ isCart:boolean = false;
     });
     return await modal.present();
   }
+  
+  loadBooks() {
+    this.bookService.getBook().subscribe(res => {
+      this.books = res;
+    });
+  }
+
+  loadFavoriteBooks() {
+    this.bookService.favorites$.subscribe(favorites => {
+      this.favoriteBooks = favorites;
+    });
+  }
+
+  isFavorite(book: Books): boolean {
+    return this.favoriteBooks.some(favorite => favorite.id === book.id);
+  }
+
+  toggleFavorite(book: Books) {
+    if (this.isFavorite(book)) {
+      const favoriteBook = this.favoriteBooks.find(favorite => favorite.id === book.id);
+      if (favoriteBook) {
+        this.bookService.removeFromFavorites(favoriteBook.id!).then(() => {
+          this.loadFavoriteBooks();
+        });
+      }
+    } else {
+      this.bookService.addToFavorites(book).then(() => {
+        this.loadFavoriteBooks();
+      });
+    }
+  }
+
   
 }

@@ -20,7 +20,7 @@ export class LibraryPage implements OnInit {
   bookgenre: string;
   bookprice: number;
   quantity: number = 0;
-  isFavorite: boolean = false;
+  sypnosis: string;
   isCart: boolean = false;
   isAdmin: boolean = false;
 
@@ -62,11 +62,11 @@ export class LibraryPage implements OnInit {
   clearFields() {
     this.bookname = "";
     this.bookimage = "";
-    this.isFavorite = false;
     this.isCart = false;
     this.bookauthor = "";
     this.bookgenre = "";
     this.bookprice = null;
+    this.sypnosis ="";
   }
 
   addBook() {
@@ -74,11 +74,11 @@ export class LibraryPage implements OnInit {
       userId: this.userId,
       bookname: this.bookname,
       bookimage: this.bookimage,
-      isFavorite: this.isFavorite,
       isCart: this.isCart,
       bookauthor: this.bookauthor,
       bookgenre: this.bookgenre,
       bookprice: this.bookprice,
+      sypnosis: this.sypnosis,
       quantity: this.quantity
     }).then(async () => {
       const toast = await this.toastController.create({
