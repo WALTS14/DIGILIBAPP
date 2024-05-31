@@ -33,6 +33,9 @@
           <p>{{ book.bookauthor }}</p>
           <p>{{ book.bookgenre }}</p>
         </ion-label>
+        <ion-button slot="end" (click)="removeFromFavorites(book.id!)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
       </ion-item>
     </ion-list>
     <ion-list *ngIf="selectedTab === 'orders'">

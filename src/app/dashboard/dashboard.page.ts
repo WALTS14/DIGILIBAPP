@@ -24,7 +24,9 @@ bookprice:number;
 isCart:boolean = false;
 
   books:Books[]=[]
-  favoriteBooks: Books[] = [];
+  recommendedBooks: Books[] = [];
+  historyBooks: Books[] = [];
+  
 
   filteredItems: Array<{
     bookName: string;
@@ -60,7 +62,12 @@ isCart:boolean = false;
 
   ngOnInit() {
     this.loadBooks();
-    this.loadFavoriteBooks();
+    this.bookService.getProfile().then(user => {
+      if (user) {
+        this.userId = user.uid;
+        this.loadFavoriteBooks();
+      }
+    });
   }
   
   async toggleModal() {
@@ -88,33 +95,39 @@ isCart:boolean = false;
   loadBooks() {
     this.bookService.getBook().subscribe(res => {
       this.books = res;
+      this.setRecommendedBooks();
+      this.setHistoryBooks();
     });
   }
 
   loadFavoriteBooks() {
-    this.bookService.favorites$.subscribe(favorites => {
-      this.favoriteBooks = favorites;
-    });
-  }
-
-  isFavorite(book: Books): boolean {
-    return this.favoriteBooks.some(favorite => favorite.id === book.id);
-  }
-
-  toggleFavorite(book: Books) {
-    if (this.isFavorite(book)) {
-      const favoriteBook = this.favoriteBooks.find(favorite => favorite.id === book.id);
-      if (favoriteBook) {
-        this.bookService.removeFromFavorites(favoriteBook.id!).then(() => {
-          this.loadFavoriteBooks();
-        });
-      }
-    } else {
-      this.bookService.addToFavorites(book).then(() => {
-        this.loadFavoriteBooks();
+    if (this.userId) {
+      this.bookService.getFavorites(this.userId).subscribe(favorites => {
+        this.books = favorites;
       });
     }
   }
 
+  isFavorite(book: Books): boolean {
+    return this.books.some(favorite => favorite.id === book.id);
+  }
+
+  async toggleFavorite(book: Books) {
+    if (this.isFavorite(book)) {
+      await this.bookService.removeFromFavorites(book.id!);
+    } else {
+      await this.bookService.addToFavorites(book);
+    }
+    this.loadFavoriteBooks(); 
+  }
+
+  setRecommendedBooks() {
+    this.recommendedBooks = this.books.sort(() => 0.5 - Math.random()).slice(0, 3);
+  }
+
+  setHistoryBooks() {
+    const historyBooks = this.books.filter(book => book.bookgenre.toLowerCase() === 'history').slice(0, 3);
+    this.historyBooks = historyBooks;
+  }
   
 }
