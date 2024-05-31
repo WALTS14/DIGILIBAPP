@@ -21,6 +21,10 @@ const routes: Routes = [
         loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
       },
       {
+        path: 'library',
+        loadChildren: () => import('./library/library.module').then( m => m.LibraryPageModule)
+      },
+      {
         path: 'librarydash',
         loadChildren: () => import('./librarydash/librarydash.module').then( m => m.LibrarydashPageModule)
       },

@@ -24,7 +24,7 @@ export class LoginPage implements OnInit {
    async login(){
 
     if (this.email== this.Arrayemail[0] && this.password == this.Arraypass[0] ){
-           this.router.navigate(['library'])
+           this.router.navigate(['tabs/library'])
       }
      const auth = getAuth();
      signInWithEmailAndPassword(auth, this.email, this.password)

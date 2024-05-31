@@ -25,6 +25,9 @@ isCart:boolean = false;
 
   books:Books[]=[]
   favoriteBooks: Books[] = [];
+  recommendedBooks: Books[] = [];
+  historyBooks: Books[] = [];
+  
 
   filteredItems: Array<{
     bookName: string;
@@ -88,6 +91,8 @@ isCart:boolean = false;
   loadBooks() {
     this.bookService.getBook().subscribe(res => {
       this.books = res;
+      this.setRecommendedBooks();
+      this.setHistoryBooks();
     });
   }
 
@@ -116,6 +121,15 @@ isCart:boolean = false;
     }
   }
 
+  setRecommendedBooks() {
+    this.recommendedBooks = this.books.sort(() => 0.5 - Math.random()).slice(0, 3);
+  }
+
+  setHistoryBooks() {
+    const historyBooks = this.books.filter(book => book.bookgenre.toLowerCase() === 'history').slice(0, 3);
+    this.historyBooks = historyBooks;
+  }
+  
   
 }
 

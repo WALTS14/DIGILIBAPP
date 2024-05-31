@@ -1,12 +1,38 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Library</ion-title>
-  </ion-toolbar>
+  <!-- <ion-toolbar>
+    <ion-button (click)="exit()">
+      <ion-icon name="exit"></ion-icon>
+    </ion-button>
+
+    <ion-title>ADMIN PANEL</ion-title>
+  </ion-toolbar> -->
+
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title>Library</ion-title>
+      <ion-searchbar
+        [(ngModel)]="searchTerm"
+        (ionInput)="filterBooks()"
+        placeholder="Search books"
+        slot="end"
+      ></ion-searchbar>
+      <ion-select
+      [(ngModel)]="searchCriterion"
+      (ionChange)="filterBooks()"
+      interface="popover"
+      slot="end"
+    >
+      <ion-select-option value="bookname">Book Name</ion-select-option>
+      <ion-select-option value="bookauthor">Author</ion-select-option>
+      <ion-select-option value="bookgenre">Genre</ion-select-option>
+    </ion-select>
+    </ion-toolbar>
+  </ion-header>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-grid>
-    <ion-row>
+
       <ion-col sizeLg="4" sizeMd="4" size="6" *ngFor="let book of books" (click)="isAdmin ? openBook(book) : openBook2(book)">
         <ion-card class="card-style">
           <ion-card-header>

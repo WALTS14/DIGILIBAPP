@@ -122,7 +122,7 @@ export class LibraryPage implements OnInit {
   }
 
   goToOrdersPage() {
-    this.router.navigate(['/orders']);
+    this.router.navigate(['tabs/orders']);
   }
 
   uploadFile(event: any) {

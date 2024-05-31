@@ -21,17 +21,17 @@
   
 
   <ion-grid>
-
+    <ion-row class="portals">
+      <img src="../../assets/images/LIBRARY.jpg">
+    </ion-row>
     <ion-col class="Home">
-      <ion-row class="portals">
-        <img src="../../assets/images/LIBRARY.jpg">
-      </ion-row>
+      
       
       <div>
         <p>Creative and Fine Arts</p>
         <ion-card class="book-section" >
           <div class="book-row">
-            <ion-card-content class="book-style" *ngFor="let book of books" (click)="openBook(book)" >
+            <ion-card-content class="book-style" *ngFor="let book of recommendedBooks" (click)="openBook(book)" >
               <img [src]="book.bookimage" class="book-image" alt="book image" />
             </ion-card-content>
           </div>
@@ -42,7 +42,7 @@
       <div>
         <p>Biology</p>
         <ion-card class="book-section" >
-          <div class="book-row" *ngIf="bookgenre === 'ART'">
+          <div class="book-row">
             <ion-card-content class="book-style" *ngFor="let book of books" (click)="openBook(book)" >
               <img [src]="book.bookimage" class="book-image" alt="book image" />
             </ion-card-content>
@@ -55,7 +55,7 @@
         <p>Philippine History</p>
         <ion-card class="book-section" >
           <div class="book-row">
-            <ion-card-content class="book-style" *ngFor="let book of books" (click)="openBook(book)" >
+            <ion-card-content class="book-style" *ngFor="let book of recommendedBooks" (click)="openBook(book)" >
               <img [src]="book.bookimage" class="book-image" alt="book image" />
             </ion-card-content>
           </div>
