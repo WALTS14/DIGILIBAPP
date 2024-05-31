@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
 import { Books, BookserviceService } from '../services/bookservice.service';
 
 @Component({
@@ -15,7 +14,6 @@ export class ProfilePage implements OnInit {
   orders: any[] = [];
 
   constructor(
-    private navCtrl: NavController,
     private router: Router,
     private bookService: BookserviceService
   ) {}
@@ -24,22 +22,26 @@ export class ProfilePage implements OnInit {
     this.bookService.getProfile().then((user) => {
       this.userId = user?.uid;
       if (this.userId) {
-        
+        this.loadFavorites();
         this.loadOrders();
       }
     });
   }
 
+  loadFavorites() {
+    this.bookService.getFavorites(this.userId).subscribe(favorites => {
+      this.favorites = favorites;
+    });
+  }
 
   loadOrders() {
     this.bookService.getOrders(this.userId).subscribe((res) => {
       this.orders = res.map(order => ({
         ...order,
-        date: (order.date as any).toDate() // Convert Firestore timestamp to Date
+        date: (order.date as any).toDate() 
       }));
     });
   }
-
 
   goToSettingsPage() {
     this.router.navigate(['/settings']);
@@ -57,4 +59,5 @@ export class ProfilePage implements OnInit {
     this.selectedTab = 'orders';
   }
 }
+
 

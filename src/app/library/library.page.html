@@ -1,12 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Library</ion-title>
+    <ion-button (click)="exit()">
+      <ion-icon name="exit"></ion-icon>
+    </ion-button>
+
+    <ion-title>ADMIN PANEL</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-grid>
-
+      <p>AHAHHA</p>
       <ion-col sizeLg="4" sizeMd="4" size="6" *ngFor="let book of books" (click)="openBook(book)">
         <ion-card class="card-style">
           <ion-card-header>
@@ -71,6 +75,15 @@
             type="number"
             [(ngModel)]="bookprice"
           ></ion-input>
+        </ion-item>
+        <ion-item class="Sypnosis">
+          <ion-textarea class="Sypnosis"
+            labelPlacement="stacked"
+            label="Enter Sypnosis"
+            type="text"
+            lines="none"
+            [(ngModel)]="sypnosis"
+          ></ion-textarea>
         </ion-item>
       </ion-content>
     </ng-template>

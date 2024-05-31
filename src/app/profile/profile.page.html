@@ -29,12 +29,12 @@
     <ion-list *ngIf="selectedTab === 'favorites'" >
       <ion-item class="Favorite"  *ngFor="let book of favorites">
         <ion-thumbnail slot="start">
-          <ion-img [src]="book.bookimage"></ion-img>
+          <img [src]="book.bookimage" alt="book image">
         </ion-thumbnail>
         <ion-label>
           <h2>{{ book.bookname }}</h2>
-          <h3>Author: {{ book.bookauthor }}</h3>
-          <p>Genre: {{ book.bookgenre }}</p>
+          <p>{{ book.bookauthor }}</p>
+          <p>{{ book.bookgenre }}</p>
         </ion-label>
       </ion-item>
     </ion-list>

@@ -21,8 +21,8 @@ const routes: Routes = [
         loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
       },
       {
-        path: 'library',
-        loadChildren: () => import('./library/library.module').then( m => m.LibraryPageModule)
+        path: 'librarydash',
+        loadChildren: () => import('./librarydash/librarydash.module').then( m => m.LibrarydashPageModule)
       },
       {
         path: 'profile',
@@ -78,6 +78,11 @@ const routes: Routes = [
     path: 'orders',
     loadChildren: () => import('./orders/orders.module').then( m => m.OrdersPageModule)
   },
+  {
+    path: 'librarydash',
+    loadChildren: () => import('./librarydash/librarydash.module').then( m => m.LibrarydashPageModule)
+  },
+
 
 
 ];

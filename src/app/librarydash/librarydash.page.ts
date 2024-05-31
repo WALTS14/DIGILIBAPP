@@ -7,11 +7,11 @@ import { BookInfo2Page } from '../book-info2/book-info2.page';
 import { CartPage } from '../cart/cart.page';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.page.html',
-  styleUrls: ['./dashboard.page.scss'],
+  selector: 'app-librarydash',
+  templateUrl: './librarydash.page.html',
+  styleUrls: ['./librarydash.page.scss'],
 })
-export class DashboardPage implements OnInit {
+export class LibrarydashPage implements OnInit {
 
   searchTerm: string ='';
   
@@ -118,3 +118,4 @@ isCart:boolean = false;
 
   
 }
+

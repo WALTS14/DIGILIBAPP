@@ -1,0 +1,73 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="toolbar-container">
+    <header>
+      <img class="logo" src="../../assets/images/homescreen logo.jpg" >
+      <div>
+        <ion-button fill="clear" class="searchbar">
+          <!-- <ion-input type="text" name="searchTerm" [(ngModel)]="searchTerm" (ionInput)="search(searchTerm)" placeholder="Search"></ion-input>
+          <ion-icon name="search" class="setting"></ion-icon> -->
+        </ion-button>  
+        
+        <ion-button fill="clear" (click)="openCart()" class="dashbtn">
+          <ion-icon name="cart" class="setting"></ion-icon>
+        </ion-button>
+      </div>
+    </header>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true" class="background-image">
+  
+
+  <ion-grid>
+
+    <ion-col class="Home">
+      <ion-row class="portals">
+        <img src="../../assets/images/LIBRARY.jpg">
+      </ion-row>
+      
+      <div>
+        <p>Creative and Fine Arts</p>
+        <ion-card class="book-section" >
+          <div class="book-row">
+            <ion-card-content class="book-style" *ngFor="let book of books" (click)="openBook(book)" >
+              <img [src]="book.bookimage" class="book-image" alt="book image" />
+            </ion-card-content>
+          </div>
+        </ion-card>
+      </div>
+      
+
+      <div>
+        <p>Biology</p>
+        <ion-card class="book-section" >
+          <div class="book-row" *ngIf="bookgenre === 'ART'">
+            <ion-card-content class="book-style" *ngFor="let book of books" (click)="openBook(book)" >
+              <img [src]="book.bookimage" class="book-image" alt="book image" />
+            </ion-card-content>
+          </div>
+        </ion-card>
+      </div>
+      
+
+      <div>
+        <p>Philippine History</p>
+        <ion-card class="book-section" >
+          <div class="book-row">
+            <ion-card-content class="book-style" *ngFor="let book of books" (click)="openBook(book)" >
+              <img [src]="book.bookimage" class="book-image" alt="book image" />
+            </ion-card-content>
+          </div>
+        </ion-card>
+      </div>
+      
+
+      
+
+    </ion-col>
+  </ion-grid>
+
+</ion-content>
+
+
