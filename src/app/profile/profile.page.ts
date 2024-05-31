@@ -27,6 +27,13 @@ export class ProfilePage implements OnInit {
       }
     });
   }
+  removeFromFavorites(bookId: string) {
+    this.bookService.removeFromFavorites(bookId).then(() => {
+      this.loadFavorites();
+    }).catch(error => {
+      console.error('Error removing book from favorites:', error);
+    });
+  }
 
   loadFavorites() {
     this.bookService.getFavorites(this.userId).subscribe(favorites => {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Firestore, collection, addDoc, query, where, collectionData, updateDoc, deleteDoc, doc, docData } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, query, where, collectionData, updateDoc, deleteDoc, doc, docData, getDocs } from '@angular/fire/firestore';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators'
 import { ToastController } from '@ionic/angular';
@@ -163,14 +163,21 @@ export class BookserviceService {
   }
 
   async addToFavorites(book: Books) {
-    const favoritesRef = collection(this.firestore, `Favorites`);
-    await addDoc(favoritesRef, { ...book, userId: this.userId });
-    this.showToast('Added to favorites!');
+    const favoritesRef = collection(this.firestore, 'Favorites');
+    const querySnapshot = await getDocs(query(favoritesRef, where('userId', '==', this.userId), where('id', '==', book.id)));
+    if (querySnapshot.empty) {
+      await addDoc(favoritesRef, { ...book, userId: this.userId, isFavorite: true });
+      this.loadFavorites(this.userId);
+      this.showToast('Added to favorites!');
+    } else {
+      this.showToast('Book already in favorites!');
+    }
   }
 
   async removeFromFavorites(bookId: string) {
     const bookRef = doc(this.firestore, `Favorites/${bookId}`);
     await deleteDoc(bookRef);
+    this.loadFavorites(this.userId); 
     this.showToast('Removed from favorites!');
   }
 
@@ -195,5 +202,4 @@ export class BookserviceService {
     });
     toast.present();
   }
-
 } 

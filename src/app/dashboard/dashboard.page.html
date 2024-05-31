@@ -4,8 +4,6 @@
       <img class="logo" src="../../assets/images/homescreen logo.jpg" >
       <div>
         <ion-button fill="clear" class="searchbar">
-          <!-- <ion-input type="text" name="searchTerm" [(ngModel)]="searchTerm" (ionInput)="search(searchTerm)" placeholder="Search"></ion-input>
-          <ion-icon name="search" class="setting"></ion-icon> -->
         </ion-button>  
         
         <ion-button fill="clear" (click)="openCart()" class="dashbtn">
@@ -18,40 +16,25 @@
 
 
 <ion-content [fullscreen]="true" class="background-image">
-  
-
   <ion-grid>
-
-    <ion-col class="Home">
-      <ion-row class="portals">
-        <img src="../../assets/images/LIBRARY.jpg">
-      </ion-row>
-      
-      <ion-card class="book-section" >
-        <p class="book-tag">Recommended for you</p>
-        <div class="book-row">
-          <ion-card-content class="book-style" *ngFor="let book of books" (click)="openBook(book)" >
-            <img [src]="book.bookimage" class="book-image" alt="book image" />
-            <p> {{  book.bookname }}</p>
-            <p> {{  book.bookprice }}</p>
+    <ion-row>
+      <ion-col size="6" *ngFor="let book of books">
+        <ion-card class="card-style">
+          <ion-card-header>
+            <ion-card-title class="card-title">
+              <img [src]="book.bookimage" class="book-image" alt="book image" />
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="card-content">
+            <p class="display">Name: {{ book.bookname }}</p>
+            <ion-button fill="clear" (click)="toggleFavorite(book)">
+              <ion-icon [name]="book.isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
+            </ion-button>
           </ion-card-content>
-        </div>
-      </ion-card>
-
-      <ion-card class="book-section" >
-        <p class="book-tag">New Release</p>
-        <div class="book-row">
-          <ion-card-content class="book-style" *ngFor="let book of books" (click)="openBook(book)" >
-            <img [src]="book.bookimage" class="book-image" alt="book image" />
-            <p> {{  book.bookname }}</p>
-            <p> {{  book.bookprice }}</p>
-          </ion-card-content>
-        </div>
-      </ion-card>
-
-    </ion-col>
-  </ion-grid>
-
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>       
 </ion-content>
 
 

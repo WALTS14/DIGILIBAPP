@@ -1,17 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-button (click)="exit()">
-      <ion-icon name="exit"></ion-icon>
-    </ion-button>
-
-    <ion-title>ADMIN PANEL</ion-title>
+    <ion-title>Library</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-grid>
-      <p>AHAHHA</p>
-      <ion-col sizeLg="4" sizeMd="4" size="6" *ngFor="let book of books" (click)="openBook(book)">
+    <ion-row>
+      <ion-col sizeLg="4" sizeMd="4" size="6" *ngFor="let book of books" (click)="isAdmin ? openBook(book) : openBook2(book)">
         <ion-card class="card-style">
           <ion-card-header>
             <ion-card-title class="card-title">

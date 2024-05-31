@@ -25,6 +25,9 @@ export class LibraryPage implements OnInit {
   isAdmin: boolean = false;
 
   books: Books[] = [];
+  filteredBooks: Books[] = [];
+  searchTerm: string = '';
+  searchCriterion: string = 'bookname';
 
   constructor(
     private bookService: BookserviceService,
@@ -41,6 +44,7 @@ export class LibraryPage implements OnInit {
       this.isAdmin = this.checkIfAdmin(user.email);
       this.bookService.getBook().subscribe(res => {
         this.books = res;
+        this.filteredBooks = res;
       });
     });
   }
@@ -134,6 +138,30 @@ export class LibraryPage implements OnInit {
         });
       })
     ).subscribe();
+  }
+
+  filterBooks() {
+    const term = this.searchTerm.toLowerCase();
+    switch (this.searchCriterion) {
+      case 'bookname':
+        this.filteredBooks = this.books.filter(book => 
+          book.bookname.toLowerCase().includes(term)
+        );
+        break;
+      case 'bookauthor':
+        this.filteredBooks = this.books.filter(book => 
+          book.bookauthor.toLowerCase().includes(term)
+        );
+        break;
+      case 'bookgenre':
+        this.filteredBooks = this.books.filter(book => 
+          book.bookgenre.toLowerCase().includes(term)
+        );
+        break;
+      default:
+        this.filteredBooks = this.books;
+        break;
+    }
   }
 }
 
