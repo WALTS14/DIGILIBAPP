@@ -45,7 +45,7 @@ export class SettingsPage implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/profile']);
+    this.router.navigate(['tabs/profile']);
   }
 }
 

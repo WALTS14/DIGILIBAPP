@@ -43,11 +43,12 @@
   }
   
   .signupbtn {
+    align-self: center;
       margin: 20px  0 0 85px;
       width: 150px;
       --border: 1px solid black; 
       --border-radius: 50%;
-      --background: white ;
+      --background: brown ;
       --background-activated: rgb(180, 180, 180);
       --background-focused: white ;
   }

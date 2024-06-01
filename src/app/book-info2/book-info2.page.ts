@@ -32,6 +32,7 @@ export class BookInfo2Page implements OnInit {
       duration: 2000
     });
     toast.present();
+    this.modalController.dismiss();
   }
 
   async updateBook() {

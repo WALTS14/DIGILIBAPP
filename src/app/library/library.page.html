@@ -1,11 +1,4 @@
 <ion-header [translucent]="true">
-  <!-- <ion-toolbar>
-    <ion-button (click)="exit()">
-      <ion-icon name="exit"></ion-icon>
-    </ion-button>
-
-    <ion-title>ADMIN PANEL</ion-title>
-  </ion-toolbar> -->
 
   <ion-header [translucent]="true">
     <ion-toolbar>
@@ -32,20 +25,17 @@
 
 <ion-content [fullscreen]="true">
   <ion-grid>
-
-      <ion-col sizeLg="4" sizeMd="4" size="6" *ngFor="let book of books" (click)="isAdmin ? openBook(book) : openBook2(book)">
+      <ion-col sizeLg="4" sizeMd="4" size="6" *ngFor="let book of filteredBooks">
         <ion-card class="card-style">
           <ion-card-header>
             <ion-card-title class="card-title">
-              <img [src]="book.bookimage" class="book-image"  alt="book image" />
+              <img [src]="book.bookimage" class="book-image"  alt="book image" (click)="isAdmin ? openBook(book) : openBook2(book)" />
             </ion-card-title>
           </ion-card-header>
           <ion-card-content class="card-content">
             <p class="display">Name: {{ book.bookname }}</p>
           </ion-card-content>
-
       </ion-card>
-
     </ion-col>
   </ion-grid>
 

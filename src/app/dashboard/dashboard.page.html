@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="toolbar-container">
     <header>
-      <img class="logo" src="../../assets/images/homescreen logo.jpg" >
+      <img class="logo" src="../../assets/images/homescreen logo.jpg" alt="homescreen">
       <div>
         <ion-button fill="clear" class="searchbar">
         </ion-button>  
@@ -20,14 +20,14 @@
     <ion-col class="Home">
       
       <ion-row class="portals">
-        <img src="../../assets/images/LIBRARY.jpg">
+        <img src="../../assets/images/LIBRARY.jpg" alt="Library image" class="Image">
       </ion-row>
       
       <ion-card class="book-section" >
         <p class="book-tag">Recommended for you</p>
         <div class="book-row">
-          <ion-card-content class="book-style" *ngFor="let book of recommendedBooks" (click)="openBook(book)" >
-            <img [src]="book.bookimage" class="book-image" alt="book image" />
+          <ion-card-content class="book-style" *ngFor="let book of recommendedBooks" >
+            <img [src]="book.bookimage" class="book-image" alt="book image" (click)="openBook2(book)" />
             <p> {{  book.bookname }}</p>
             <p> ₱{{  book.bookprice }}.00</p>
             <div (click)="toggleFavorite(book)">
@@ -40,8 +40,8 @@
       <ion-card class="book-section" >
         <p class="book-tag">New Release</p>
         <div class="book-row">
-          <ion-card-content class="book-style" *ngFor="let book of historyBooks" (click)="openBook(book)" >
-            <img [src]="book.bookimage" class="book-image" alt="book image" />
+          <ion-card-content class="book-style" *ngFor="let book of historyBooks"  >
+            <img [src]="book.bookimage" class="book-image" alt="book image" (click)="openBook2(book)" />
             <p> {{  book.bookname }}</p>
             <p> ₱{{  book.bookprice }}.00</p>
             

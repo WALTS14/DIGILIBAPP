@@ -20,6 +20,8 @@ export class DashboardPage implements OnInit {
   bookgenre: string;
   bookprice: number;
   isCart: boolean = false;
+  isAdmin:boolean = false;
+
   books: Books[] = [];
   recommendedBooks: Books[] = [];
   historyBooks: Books[] = [];
@@ -37,9 +39,14 @@ export class DashboardPage implements OnInit {
     this.bookService.getProfile().then(user => {
       if (user) {
         this.userId = user.uid;
+        this.isAdmin = this.checkIfAdmin(user.email);
         this.loadFavoriteBooks();
       }
     });
+  }
+  checkIfAdmin(email: string): boolean {
+    const adminEmails = ['ochoajp14@gmail.com', 'admin@123.com','walter@gmail.com'];
+    return adminEmails.includes(email);
   }
   
   async toggleModal() {
