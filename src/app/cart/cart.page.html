@@ -1,18 +1,21 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Cart</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="closeCart()">
-        <ion-icon slot="icon-only" name="close"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+  <header>
+    <ion-toolbar>
+      <ion-title>Cart</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="closeCart()">
+          <ion-icon slot="icon-only" name="close" class="eks"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </header>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-list>
     <ion-item *ngFor="let book of cart">
       <ion-label>
+        <img [src]="book.bookimage" class="book-image" alt="book image" />
         <h2>{{ book.bookname }}</h2>
         <p>{{ book.bookauthor }}</p>
         <p>Price: {{ book.bookprice }}</p>
@@ -26,7 +29,7 @@
           <ion-icon slot="icon-only" name="add"></ion-icon>
         </ion-button>
       </div>
-      <ion-button slot="end" (click)="updateQuantity(book, 0)">
+      <ion-button slot="end" (click)="updateQuantity(book, 0)" >
         <ion-icon slot="icon-only" name="trash"></ion-icon>
       </ion-button>
     </ion-item>

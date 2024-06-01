@@ -3,9 +3,28 @@
     align-items: center;
     ion-button {
       margin: 0 5px;
+      color: antiquewhite;
     }
     ion-input {
       width: 50px;
       text-align: center;
     }
+  }
+
+  header {
+    background-color: #59381A; 
+  }
+
+  ion-content {
+    --ion-background-color: white;
+  }
+
+
+  
+  .eks {
+    color: white;
+  }
+  .book-image {
+    width: 100px;
+    height: 150px;
   }
