@@ -54,6 +54,10 @@ export class LibraryPage implements OnInit {
     return adminEmails.includes(email);
   }
 
+  exit() {
+    this.router.navigate(['/login']);
+  }
+
   cancel() {
     this.modalController.dismiss(null, 'cancel');
   }
@@ -118,7 +122,7 @@ export class LibraryPage implements OnInit {
   }
 
   goToOrdersPage() {
-    this.router.navigate(['/orders']);
+    this.router.navigate(['tabs/orders']);
   }
 
   uploadFile(event: any) {

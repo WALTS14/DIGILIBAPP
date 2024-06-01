@@ -1,19 +1,22 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Sign Up</ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content [fullscreen]="true">
   <div class="container">
+    <div>
+      <img src="../../assets/images/appasset/signup.jpg  " alt="">
+    </div>
+
     <div class="signup">
       <h1>Sign Up</h1>
-      <p>Email</p>
+      
       <ion-input [(ngModel)]="email" type="text" placeholder="Enter your email"></ion-input>
-      <p>Password</p>
+      <p>Email</p>
+    
       <ion-input [(ngModel)]="password" type="password" placeholder="Enter your password"></ion-input>
-      <p>Repeat Password</p>
+      <p>Password</p>
+    
       <ion-input [(ngModel)]="repeatpass" type="password" placeholder="Repeat your password"></ion-input>
+      <p>Repeat Password</p>
+      
       <ion-button (click)="signup()" class="signupbtn" expand="full">Sign Up</ion-button>
     </div>
   </div>

@@ -1,8 +1,8 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <div class="dashboard">
-      <h3 class="logo">DIGILIB</h3>
-      <div class="controls">
+  <ion-toolbar class="toolbar-container">
+    <header>
+      <img class="logo" src="../../assets/images/homescreen logo.jpg" >
+      <div>
         <ion-button fill="clear" class="searchbar">
         </ion-button>  
         
@@ -10,52 +10,50 @@
           <ion-icon name="cart" class="setting"></ion-icon>
         </ion-button>
       </div>
-    </div>
+    </header>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="background-image">
-  <h2 class="section-title">Recommended</h2>
-  <ion-grid>
-    <ion-row>
-      <ion-col size="4" *ngFor="let book of recommendedBooks" (click)="openBook2(book)">
-        <ion-card class="card-style">
-          <ion-card-header>
-            <ion-card-title class="card-title">
-              <img [src]="book.bookimage" class="book-image" alt="book image" />
-            </ion-card-title>
-          </ion-card-header>
-          <ion-card-content class="card-content">
-            <p class="display">Name: {{ book.bookname }}</p>
-            <ion-button (click)="toggleFavorite(book)">
-              <ion-icon [name]="isFavorite(book) ? 'heart' : 'heart-outline'"></ion-icon>
-            </ion-button>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
 
-  <h2 class="section-title">History</h2>
+<ion-content [fullscreen]="true" class="background-image">
   <ion-grid>
-    <ion-row>
-      <ion-col size="4" *ngFor="let book of historyBooks" (click)="openBook2(book)">
-        <ion-card class="card-style">
-          <ion-card-header>
-            <ion-card-title class="card-title">
-              <img [src]="book.bookimage" class="book-image" alt="book image" />
-            </ion-card-title>
-          </ion-card-header>
-          <ion-card-content class="card-content">
-            <p class="display">Name: {{ book.bookname }}</p>
-            <ion-button (click)="toggleFavorite(book)">
+    <ion-col class="Home">
+      
+      <ion-row class="portals">
+        <img src="../../assets/images/LIBRARY.jpg">
+      </ion-row>
+      
+      <ion-card class="book-section" >
+        <p class="book-tag">Recommended for you</p>
+        <div class="book-row">
+          <ion-card-content class="book-style" *ngFor="let book of recommendedBooks" (click)="openBook(book)" >
+            <img [src]="book.bookimage" class="book-image" alt="book image" />
+            <p> {{  book.bookname }}</p>
+            <p> ₱{{  book.bookprice }}.00</p>
+            <div (click)="toggleFavorite(book)">
               <ion-icon [name]="isFavorite(book) ? 'heart' : 'heart-outline'"></ion-icon>
-            </ion-button>
+            </div>
           </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
+        </div>
+      </ion-card>
+
+      <ion-card class="book-section" >
+        <p class="book-tag">New Release</p>
+        <div class="book-row">
+          <ion-card-content class="book-style" *ngFor="let book of historyBooks" (click)="openBook(book)" >
+            <img [src]="book.bookimage" class="book-image" alt="book image" />
+            <p> {{  book.bookname }}</p>
+            <p> ₱{{  book.bookprice }}.00</p>
+            
+            <div (click)="toggleFavorite(book)">
+              <ion-icon [name]="isFavorite(book) ? 'heart' : 'heart-outline'"></ion-icon>
+            </div>
+             
+          </ion-card-content>
+        </div>
+      </ion-card>
+
+    </ion-col>
   </ion-grid>
 </ion-content>
-
 

@@ -1,70 +1,120 @@
-ion-grid, ion-col, ion-row{
-    padding: 0px;
-}
 
 .background-image{
-  --background: url('../../assets/images/LIBRARY.jpg') no-repeat center center / cover;
-  position: relative;
+  --ion-background-color: white;
 }
 
-.dashboard {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 16px;
+ion-grid, ion-col, ion-row{
+  padding: 0px;
 }
+ion-input{
+  width: 150px;
+}
+
+.toolbar-container{
+  background-color: #83552b;
+
+}
+header {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 200px 350px 25px;
+  background-color: #59381A; 
+  align-items: center;
+ 
+
+} 
 
 .logo {
-  font-size: 1.5em;
-  flex-shrink: 0;
+  width: 160px;
+  position:static;
 }
 
-.controls {
-  display: flex;
-  align-items: center;
-}
-
-.searchbar {
-  display: flex;
-  align-items: center;
-}
 
 .searchbar ion-input {
-  margin-right: 8px;
-  flex: 1;
+  text-transform: none; 
+  width: 55px;
+  color: white;
+
 }
 
-.setting {
-  font-size: 1.2em;
+header div ion-icon {
+  color: white;
+  font-size: 30px;
 }
 
-.dashbtn {
-  margin-left: 8px;
-}
-.searchbar input {
-    text-transform: none; /* Ensure text is displayed as typed */
-}
- 
-  ion-toolbar {
-    --background: #fff; 
-    --border-color: transparent; 
-  }
-  
-  ion-button {
-    --background: transparent; 
-    --color: brown;
-    font-size: 24px; 
-  }
-  
-  ion-icon {
-    --color: brown; 
-    font-size: 24px;
-  }
 
-  .book-image {
-    width: 100%; 
-    max-width: 200px; 
-    height: auto; 
-    display: block; 
-    margin: 0 auto; 
-  }
+// -----------------------------------------------------------------------body
+
+
+.Home{
+  display: grid;
+  grid-template-rows:  180px 1fr 1fr;
+  height: 700px;
+  width: 414px;
+  gap: 15px;
+}
+
+
+
+.book-section { 
+  background-color: whitesmoke;
+  height: 275px;
+  width: 390px;
+  display: flex;
+  flex-direction: column;
+  margin: 0px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.514);
+  position: relative;
+  top: -55px;
+  padding: 2px;
+}
+
+
+.book-tag {
+  margin: 5px 0 5px 5px;      
+  color: black;         
+  font-weight: 750;                                                                       
+}
+
+.book-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; 
+}
+
+.book-row img {
+  width: 120px;
+  height: 150px;
+  object-fit: fill;
+}
+.book-row p {
+  font-family:'Times New Roman', Times, serif;
+  font-weight: 500;
+  color: black;         
+}
+
+.book-row div {
+  height: 10px;
+  position: absolute;
+  top: 210px;
+  right: 5px;
+}
+
+.book-row div ion-icon {
+  width: 40px;
+}
+
+.book-style { 
+  background-color: white;
+  height: 235px;
+  width: 130px;
+  display: flex;
+  flex-direction: column;
+  margin: 5px 5px 0 5px; 
+  padding: 7px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.185);
+}
+
+

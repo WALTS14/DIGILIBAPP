@@ -11,6 +11,9 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 })
 export class LoginPage implements OnInit {
 
+  Arrayemail: String[] = ['Admin'];
+  Arraypass: String[] = ['adminpass'];
+
   email: string = "";
   password: string = "";
 
@@ -19,6 +22,10 @@ export class LoginPage implements OnInit {
     
 
    async login(){
+
+    if (this.email== this.Arrayemail[0] && this.password == this.Arraypass[0] ){
+           this.router.navigate(['tabs/library'])
+      }
      const auth = getAuth();
      signInWithEmailAndPassword(auth, this.email, this.password)
       .then((userCredential) => {
@@ -35,6 +42,11 @@ export class LoginPage implements OnInit {
         console.error(error);
       });
   }
+  
+
+
+
+  
   ngOnInit() {
   }
   

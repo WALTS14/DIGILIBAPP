@@ -25,47 +25,40 @@
   </div>
 
   <div class="content-section">
-    <ion-card *ngIf="selectedTab === 'reading'" class="tab-content">
-      <ion-card-content>
-        <p>Hello</p>
-      </ion-card-content>
-    </ion-card>
-    
-    <ion-card *ngIf="selectedTab === 'favorites'" class="tab-content">
-      <ion-card-content>
-        <ion-item *ngFor="let book of favorites">
-          <ion-thumbnail slot="start">
-            <img [src]="book.bookimage" alt="book image">
-          </ion-thumbnail>
-          <ion-label>
-            <h2>{{ book.bookname }}</h2>
-            <p>{{ book.bookauthor }}</p>
-            <p>{{ book.bookgenre }}</p>
-          </ion-label>
-          <ion-button slot="end" color="danger" (click)="removeFromFavorites(book.id!)">
-            <ion-icon name="trash"></ion-icon>
-          </ion-button>
-        </ion-item>
-      </ion-card-content>
-    </ion-card>
-    
-    <ion-card *ngIf="selectedTab === 'orders'" class="tab-content">
-      <ion-card-content>
-        <ion-item *ngFor="let order of orders">
-          <ion-label>
-            <h2>Order Date: {{ order.date | date }}</h2>
-            <div *ngFor="let item of order.items">
-              <p>Book Name: {{ item.bookname }}</p>
-              <p>Author: {{ item.bookauthor }}</p>
-              <p>Price: {{ item.bookprice }}</p>
-              <p>Quantity: {{ item.quantity }}</p>
-            </div>
-            <h3>Total Price: {{ order.totalPrice }}</h3>
-          </ion-label>
-        </ion-item>
-      </ion-card-content>
-    </ion-card>
+    <ion-list *ngIf="selectedTab === 'reading'">
+      <p>Hello</p>
+    </ion-list>
+    <ion-list *ngIf="selectedTab === 'favorites'">
+      <ion-item *ngFor="let book of favorites">
+        <ion-thumbnail slot="start">
+          <img [src]="book.bookimage" alt="book image">
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ book.bookname }}</h2>
+          <p>{{ book.bookauthor }}</p>
+          <p>{{ book.bookgenre }}</p>
+        </ion-label>
+        <ion-button slot="end" (click)="removeFromFavorites(book.id!)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngIf="selectedTab === 'orders'">
+      <ion-item *ngFor="let order of orders">
+        <ion-label>
+          <h2>Order Date: {{ order.date | date }}</h2>
+          <div *ngFor="let item of order.items">
+            <p>Book Name: {{ item.bookname }}</p>
+            <p>Author: {{ item.bookauthor }}</p>
+            <p>Price: {{ item.bookprice }}</p>
+            <p>Quantity: {{ item.quantity }}</p>
+          </div>
+          <h3>Total Price: {{ order.totalPrice }}</h3>
+        </ion-label>
+      </ion-item>
+    </ion-list>
   </div>
+
 </ion-content>
 
 
